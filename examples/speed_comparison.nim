@@ -1,6 +1,7 @@
 # comparison of the classic db_sqlite and nimdb
 # we setup the in memory database from template 
 import times
+import db_sqlite
 include setup_example_env
 
 # perform classic insert

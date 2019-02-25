@@ -1055,17 +1055,17 @@ proc incarnateDbFromTemplate*(targetDb: DbConn, absPathWithFilename : string, ou
 
 type 
   SQLite3ColumnMetaData* = object of DbTableColumnMetaData
-    tableName : string
-    columnName : string
-    declDataType : string
+    tableName* : string
+    columnName* : string
+    declDataType* : string
     ## decleared data type (note: sqlite stores the data typeless)
-    collationSeqName : string 
+    collationSeqName* : string 
     ## how things are sorted
-    notNull : bool
+    notNull* : bool
     ## true if column is defined as not null
-    partOfPK : bool
+    partOfPK* : bool
     ## true if column is part of a pk
-    autoInc : bool
+    autoInc* : bool
     ## true if autoincremented
 
 proc `$`*(p : DbTableColumnMetaData): string =
@@ -1135,8 +1135,7 @@ proc columnNamesForTable*(dbConn : DbConn,
         rawFetch(rs,rc):
           result.add( rs.fetchString(colIdx + 1) ) 
           # could change on each SQLITE3 version
-
-
+  
 proc allUserTableNames*(dbConn: DbConn, rc : var RCode, 
                           dbName : string = "main") : seq[string]=
   ## helper to retrieve all db-object table types from specified db
