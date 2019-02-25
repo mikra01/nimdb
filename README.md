@@ -2,8 +2,7 @@
 nim relational database API.
 At the moment only sqlite3 is supported.
 
-### doc
-the module documentation is [here](https://mikra01.github.io/nimdb/nimdb_sqlite3.html).
+## [API Documentation](https://mikra01.github.io/nimdb/nimdb_sqlite3.html)
  
  
 ### dependencies
