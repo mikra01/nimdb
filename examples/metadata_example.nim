@@ -1,13 +1,34 @@
 # example usage of the metadata api
-# we dynamically clone all tables
+# dynamic table clone example
+# 
+# all tables from the testdb are cloned.
 
 import options,strutils,sequtils
 
-include bulk_bind
+include setup_example_env
 
-let tablenames = allUserTableNames(db,returncode)
 
-# todo insert rows here
+# inject 1 million rows into testtable
+var ps : PreparedStatement  
+newPreparedStatement(db,sql""" insert into main.testtable (testcol1,testcol2) values 
+                       (?,?),(?,?),(?,?),(?,?),(?,?),
+                       (?,?),(?,?),(?,?),(?,?),(?,?); """, ps,returncode) 
+                       # bulk insert 10 rows at once
+
+echo "inserting testdata : 1.000.000 rows : "
+withPreparedStatement(ps,returncode):  
+# after leaving this block the preparedStatement will be finalized                                     
+  withTransaction(db, returncode):
+    # after this block transaction ends (commit)
+    for i in countup(1,100000):
+      rawBind(ps,returncode): # bulk bind with 10 row inserts at once with parameters
+        for x in countup(1,10):
+          var str = "teststring" & $(x+i)
+          discard ps.bindString(baseIdx,str)
+          discard ps.bindFloat64(baseIdx+1,(i+x).toFloat)
+          baseIdx = baseIdx + 2 
+    if returncode.evalHasError:
+      echo $returncode
 
 proc seq2string( stringseq : var seq[string ]) : string =
     for x in stringseq:
@@ -53,11 +74,15 @@ proc doTableClone(db : nimdb_sqlite3.DbConn,
     selectstmt.add(";") 
  
     var insertfromselect = concat(insertstmt,selectstmt)
-   
+    
     db.exec(SqlQuery(seq2string(createstmt)),rc)
     if not rc.evalHasError:
       db.exec(SqlQuery(seq2string(insertfromselect)),rc)
- 
+      # per default we are running in autocommit mode
+
+
+let tablenames = allUserTableNames(db,returncode)
+
 for tn in tablenames: # browse tablenames
     var clonename = tn & "_clone"
     doTableClone(db,tn,clonename,returncode) 
@@ -68,5 +93,8 @@ for tn in tablenames: # browse tablenames
 
 let tablenamesAfterClone = allUserTableNames(db,returncode)
 echo $tablenamesAfterClone
+
+let cols = db.queryOneRow(sql"select count(*) from main.testtable_clone;",returncode,1)
+echo "rows processed : " & cols[0]
 
 db.close(returncode)
