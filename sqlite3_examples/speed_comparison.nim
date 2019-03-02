@@ -30,7 +30,7 @@ newPreparedStatement(db,sql"""insert into main.testtable (testcol1,testcol2) val
                                   """, ps , returncode )
 # example bulk insert 1mio rows
 withTransaction(db, returncode):  
-  withPreparedStatement(ps,returncode):
+  withFinalisePreparedStatement(ps,returncode):
     for i in 1..100000:
       rawBind(ps,returncode): # bulk bind with 10 row inserts at once
         for x in 0..9:
@@ -72,7 +72,7 @@ let tr = cpuTime()
 
 cr_rowsfetched = 0
 
-withPreparedStatement(ps,returncode):
+withFinalisePreparedStatement(ps,returncode):
   let r = getResultSet(ps,returncode)
   while hasRows(returncode):
     rawFetch(r,returncode):

@@ -27,7 +27,7 @@ newPreparedStatement(db,sql"""insert into main.testtable (testcol1,testcol2) val
                        (?,?),(?,?),(?,?); """, ps,returncode) 
                        # bulk insert 3 rows at once
   
-withPreparedStatement(ps,returncode):  
+withFinalisePreparedStatement(ps,returncode):  
 # after leaving this block the preparedStatement will be finalized                                     
   withTransaction(db, returncode):
   # after this block a commit is performed unless a exception is thrown,

@@ -16,7 +16,7 @@ newPreparedStatement(db,sql""" insert into main.testtable (testcol1,testcol2) va
                        # bulk insert 10 rows at once
 
 echo "inserting testdata : 1.000.000 rows : "
-withPreparedStatement(ps,returncode):  
+withFinalisePreparedStatement(ps,returncode):  
 # after leaving this block the preparedStatement will be finalized                                     
   withTransaction(db, returncode):
     # after this block transaction ends (commit)

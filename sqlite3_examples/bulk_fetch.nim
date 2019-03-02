@@ -19,7 +19,7 @@ newSeq(container,3)
 
 var rowcount : int = 0
 
-withPreparedStatement(ps,returncode):
+withFinalisePreparedStatement(ps,returncode):
   let rs = getResultSet(ps,returncode)
   # if not in WAL mode we have a read-lock here
   if hasRows(returncode):

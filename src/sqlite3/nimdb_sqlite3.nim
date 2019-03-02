@@ -181,7 +181,6 @@ proc getResultSet*( ps : PreparedStatement ,
 template resetPreparedStatement*(ps : PreparedStatement, out_rc : var RCode)  =
   ## reset the preparedStatement ready to re-execute.
   ## needed to reset the prepared statement for re-execute later on.
-  ## opposite of 'withPreparedStatement'
   bind reset
   bind clear_bindings
   collectVendorRCode(out_rc):
@@ -943,8 +942,9 @@ template withTransaction*( dbconn : DbConn, rc : var RCode, body: untyped) =
     dbconn.exec(sql"COMMIT;",rc)
 
 
-template withPreparedStatement*(ps : PreparedStatement, rcode : var RCode,
-                       body: untyped ) =
+template withFinalisePreparedStatement*(ps : PreparedStatement, 
+                                        rcode : var RCode,
+                                        body: untyped ) =
   ## finalizes the preparedStatement after leaving the block.
   ## it can't be used later on.
   # TODO: error handling
@@ -1129,7 +1129,7 @@ proc columnNamesForTable*(dbConn : DbConn,
   let query = "select * from pragma_table_info('" & tableName & "');"
   newPreparedStatement(dbConn,sql(query),ps,rc)
   if not rc.evalHasError:
-    withPreparedStatement(ps,rc):
+    withFinalisePreparedStatement(ps,rc):
       let rs = getResultSet(ps,rc)
       result.setlen(0)
       while hasRows(rc):
@@ -1145,7 +1145,7 @@ proc allUserTableNames*(dbConn: DbConn, rc : var RCode,
   var ps : PreparedStatement
   newPreparedStatement(dbConn,sql(query),ps,rc)
   if not rc.evalHasError:
-    withPreparedStatement(ps,rc):
+    withFinalisePreparedStatement(ps,rc):
       let rs = getResultSet(ps,rc)
       while hasRows(rc):
         rawFetch(rs,rc):
@@ -1159,7 +1159,7 @@ proc allUserIndexNames*(dbConn : DbConn, rc : var RCode,
   var ps : PreparedStatement
   newPreparedStatement(dbConn,sql(query),ps,rc)
   if not rc.evalHasError:
-    withPreparedStatement(ps,rc):
+    withFinalisePreparedStatement(ps,rc):
       let rs = getResultSet(ps,rc)
       while hasRows(rc):
         rawFetch(rs,rc):
@@ -1174,7 +1174,7 @@ proc allUserViewNames*(dbConn : DbConn, rc : var RCode,
   var ps : PreparedStatement
   newPreparedStatement(dbConn,sql(query),ps,rc)
   if not rc.evalHasError:
-    withPreparedStatement(ps,rc):
+    withFinalisePreparedStatement(ps,rc):
       let rs = getResultSet(ps,rc)
       while hasRows(rc):
         rawFetch(rs,rc):
