@@ -123,9 +123,8 @@ template collectMsgAndDoIfErrorElse( rc : var RCode,
                                      body_ok : untyped) =
   ## evaluates for error. if true the error message is collected and the body_err
   ## is executed else body_ok is executed 
-  bind nimdb_sqlite3w.sqlite3_db_handle
   if evalHasError(rc):
-    rc.errStr = $errmsg(sqlite3_db_handle(ps)) # ucs does not work here
+    rc.errStr = $errmsg(db) # ucs does not work here
     body_err
   else:
     body_ok  
@@ -185,9 +184,9 @@ template resetPreparedStatement*(ps : PreparedStatement, out_rc : var RCode)  =
   ## opposite of 'withPreparedStatement'
   bind reset
   bind clear_bindings
-  collectVendorRCode(out_rc,ps):
+  collectVendorRCode(out_rc):
     reset(ps)
-  if not evalHasError(rc):
+  if not evalHasError(out_rc):
     collectVendorRCode(out_rc):
       clear_bindings(ps)
 
@@ -394,15 +393,15 @@ proc bindString* ( ps      : PreparedStatement,
 proc bindStringUT* ( ps     : PreparedStatement, 
                     paramIdx : int,
                     val     : pointer,
-                    val_len : int,
+                    val_len : int32,
                  freeCb : SQLite3UnbindCb = nil ) : int  =
   ## Binds a string to the specified paramIndex. untraced version.
   ## The return value is the raw sqlite returncode which can be 
   ## evaluated by the evalBindError template
   if not freeCb.isNil: 
-    result = bind_text(ps, paramIdx.int32, cast[cstring](val), val_len.int32,freeCb)
+    result = bind_text(ps, paramIdx.int32, cast[cstring](val), val_len,freeCb)
   else:
-    result = bind_text(ps, paramIdx.int32,cast[cstring](val), val_len.int32, SQLITE_STATIC)
+    result = bind_text(ps, paramIdx.int32,cast[cstring](val), val_len, SQLITE_STATIC)
 
 proc bindBlob*( ps : PreparedStatement, 
                    paramIdx : int,
@@ -420,7 +419,8 @@ proc bindBlob*( ps : PreparedStatement,
     var sb = unsafeGet(val)
     if not freeCb.isNil:
       result = bind_blob(ps, paramIdx.int32, unsafeAddr(sb[0]) , 
-                         (sb.len).int32 ,freeCb)    
+                         (sb.len).int32 ,freeCb) 
+      # TODO: eval if bloblen can exceed 32 bit   
     else:
       result = bind_blob(ps, paramIdx.int32, unsafeAddr(sb[0]) , 
                          (sb.len).int32 , SQLITE_STATIC)
@@ -438,6 +438,7 @@ proc bindBlob*( ps : PreparedStatement,
   if not freeCb.isNil:
     result = bind_blob(ps, paramIdx.int32, unsafeAddr(val[0]) , 
                      (val.len).int32 ,freeCb)    
+                     # TODO: eval if bloblen can exceed 32 bit   
   else:
     result = bind_blob(ps, paramIdx.int32, unsafeAddr(val[0]) , 
                      (val.len).int32 , SQLITE_STATIC)
@@ -445,7 +446,7 @@ proc bindBlob*( ps : PreparedStatement,
 proc bindBlobUT* ( ps       :  PreparedStatement, 
                    paramIdx : int,
                    val      : pointer,
-                   val_len  : int,
+                   val_len  : int32,
                    freeCb   : SQLite3UnbindCb = nil ) : int  =
   ## binds a blob to the specified index. untraced version.
   ## unless the callback was called the pointer needs to stay valid.
@@ -453,9 +454,9 @@ proc bindBlobUT* ( ps       :  PreparedStatement,
   ## return value is the sqlite returncode which can be evaluated 
   ## by the evalHasError/evalBindError template
   if not freeCb.isNil:
-    result = bind_blob(ps, paramIdx.int32, val, val_len.int32 ,freeCb)
+    result = bind_blob(ps, paramIdx.int32, val, val_len ,freeCb)
   else:
-    result = bind_blob(ps, paramIdx.int32, val, val_len.int32 ,SQLITE_STATIC)
+    result = bind_blob(ps, paramIdx.int32, val, val_len ,SQLITE_STATIC)
 
 type
   BulkBindToColsCb*[T] = proc(ps : PreparedStatement, 
