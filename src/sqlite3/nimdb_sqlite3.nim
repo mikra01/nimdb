@@ -513,7 +513,7 @@ proc bulkBind*[T](ps : PreparedStatement,
   if bindIdx > maxParamsPerIter and not evalHasError(out_msg): # all params filled
     discard ps.step() # parameter count equal element count
     discard ps.reset()
-    bindIdx = 1
+    bindIdx = BindIdxStart
 
   result = bindIdx   # in case of error the index points to the faulty col 
 
