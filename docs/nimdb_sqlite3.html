@@ -27,113 +27,232 @@ customize this style sheet.
 Modified from Chad Skeeters' rst2html-style
 https://bitbucket.org/cskeeters/rst2html-style/
 
-Modified by Boyd Greenfield and narimiran
+Modified by Boyd Greenfield
 */
-
+/* SCSS variables */
+/* Text weights */
+/* Body colors */
+/* Text colors */
+/* Link colors */
+/* Syntax highlighting colors */
+/* Pct changes */
+/* Mixins */
+/* Body/layout */
 html {
   font-size: 100%;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%; }
 
+/* Where we want fancier font if available */
+h1, h2, h3, h4, h5, h6, p.module-desc, table.docinfo + blockquote p, table.docinfo blockquote p, h1 + blockquote p {
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important; }
+
+h1.title {
+  font-weight: 900; }
+
 body {
   font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  font-size: 1.125em;
-  line-height: 1.5;
-  color: #222;
-  background-color: #FCFCFC; }
+  font-size: 16px;
+  line-height: 20px;
+  color: #444;
+  letter-spacing: 0.15px;
+  background-color: #FDFBFA; }
 
 /* Skeleton grid */
 .container {
   position: relative;
   width: 100%;
-  max-width: 1050px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 0;
+  padding: 0 20px;
   box-sizing: border-box; }
 
 .column,
 .columns {
   width: 100%;
   float: left;
-  box-sizing: border-box;
-  margin-left: 1%;
-}
+  box-sizing: border-box; }
 
-.column:first-child,
-.columns:first-child {
-  margin-left: 0; }
+/* For devices larger than 400px */
+@media (min-width: 400px) {
+  .container {
+    width: 100%;
+    padding: 0; } }
+/* For devices larger than 650px */
+@media (min-width: 650px) {
+  .container {
+    width: 100%; }
 
-.three.columns {
-  width: 19%; }
+  .column,
+  .columns {
+    margin-left: 4%; }
 
-.nine.columns {
-  width: 80.0%; }
+  .column:first-child,
+  .columns:first-child {
+    margin-left: 0; }
 
-.twelve.columns {
-  width: 100%;
-  margin-left: 0; }
+  .one.column,
+  .one.columns {
+    width: 4.66666666667%; }
 
-@media screen and (max-width: 860px) {
+  .two.columns {
+    width: 13.3333333333%; }
+
   .three.columns {
-    display: none;
-  }
+    width: 22%; }
+
+  .four.columns {
+    width: 30.6666666667%; }
+
+  .five.columns {
+    width: 39.3333333333%; }
+
+  .six.columns {
+    width: 48%; }
+
+  .seven.columns {
+    width: 56.6666666667%; }
+
+  .eight.columns {
+    width: 65.3333333333%; }
+
   .nine.columns {
-    width: 98.0%;
-  }
-  body {
-    font-size: 1em;
-    line-height: 1.35;
-  }
-}
+    width: 74.0%; }
+
+  .ten.columns {
+    width: 82.6666666667%; }
+
+  .eleven.columns {
+    width: 91.3333333333%; }
+
+  .twelve.columns {
+    width: 100%;
+    margin-left: 0; }
+
+  .one-third.column {
+    width: 30.6666666667%; }
+
+  .two-thirds.column {
+    width: 65.3333333333%; } }
+/* Customer Overrides */
+.footer {
+  text-align: center;
+  color: #969696;
+  padding-top: 10%; }
+
+p.module-desc {
+  font-size: 1.1em;
+  color: #666666; }
+
+a.link-seesrc {
+  color: #aec7d2;
+  font-style: italic; }
+
+a.link-seesrc:hover {
+  color: #6c9aae; }
+
+#toc-list {
+  word-wrap: break-word; }
+
+ul.simple-toc {
+  list-style: none; }
+
+ul.simple-toc a.reference-toplevel {
+  font-weight: bold;
+  color: #0077b3; }
+
+ul.simple-toc-section {
+  list-style-type: circle;
+  color: #6c9aae; }
+
+ul.simple-toc-section a.reference {
+  color: #0077b3; }
 
 cite {
   font-style: italic !important; }
 
+dt > pre {
+  border-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 15px 0px 5px; }
+
+dd > pre {
+  border-color: rgba(0, 0, 0, 0.1);
+  background-color: whitesmoke;
+  margin-top: 8px; }
+
+.item > dd {
+  margin-left: 10px;
+  margin-bottom: 30px; }
+
+/* Nim line-numbered tables */
+.line-nums-table {
+  width: 100%;
+  table-layout: fixed; }
 
 /* Nim search input */
 div#searchInputDiv {
-  margin-bottom: 1em;
+  margin-bottom: 8px;
 }
-input#searchInput {
-  width: 80%;
+div#searchInputDiv input#searchInput {
+  width: 10em;
+}
+div.search-groupby {
+  margin-bottom: 8px;
 }
 
+table.line-nums-table {
+  border-radius: 4px;
+  border: 1px solid #cccccc;
+  background-color: whitesmoke;
+  border-collapse: separate;
+  margin-top: 15px;
+  margin-bottom: 25px; }
+
+.line-nums-table tbody {
+  border: none; }
+
+.line-nums-table td pre {
+  border: none;
+  background-color: transparent; }
+
+.line-nums-table td.blob-line-nums {
+  width: 28px; }
+
+.line-nums-table td.blob-line-nums pre {
+  color: #b0b0b0;
+  -webkit-filter: opacity(75%);
+  text-align: right;
+  border-color: transparent;
+  background-color: transparent;
+  padding-left: 0px;
+  margin-left: 0px;
+  padding-right: 0px;
+  margin-right: 0px; }
 
 /* Docgen styles */
 /* Links */
 a {
-  color: #07b;
-  text-decoration: none;
-}
-
-a span.Identifier {
-  text-decoration: underline;
-  text-decoration-color: #aab;
-}
-
-a.reference-toplevel {
-  font-weight: bold;
-}
-
-a.toc-backref {
-  text-decoration: none;
-  color: #222; }
-
-a.link-seesrc {
-  color: #607c9f;
-  font-size: 0.9em;
-  font-style: italic; }
+  color: #0077b3;
+  text-decoration: none; }
 
 a:hover,
 a:focus {
-  color: #607c9f;
+  color: #00334d;
   text-decoration: underline; }
 
-a:hover span.Identifier {
-  color: #607c9f;
-}
+a:visited {
+  color: #00334d; }
 
+a:focus {
+  outline: thin dotted #2d2d2d;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px; }
+
+a:hover,
+a:active {
+  outline: 0; }
 
 sub,
 sup {
@@ -210,258 +329,379 @@ img {
 
   h2,
   h3 {
-    page-break-after: avoid; }
-}
+    page-break-after: avoid; } }
+.img-rounded {
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px; }
 
+.img-polaroid {
+  padding: 4px;
+  background-color: rgba(252, 248, 244, 0.75);
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
 
 p {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
+  margin: 0 0 8px; }
 
 small {
   font-size: 85%; }
 
 strong {
-  font-weight: 600;
-  font-size: 0.95em;
-  color: #3c3c3c;
-}
+  font-weight: 600; }
 
 em {
   font-style: italic; }
 
+cite {
+  font-style: normal; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  line-height: 20px;
+  color: inherit;
+  text-rendering: optimizelegibility; }
+
 h1 {
-  font-size: 1.8em;
+  font-size: 2em;
   font-weight: 400;
-  padding-bottom: .25em;
-  border-bottom: 1px solid #aaa;
-  margin-top: 2.5em;
-  margin-bottom: 1em;
+  padding-bottom: .15em;
+  border-bottom: 1px solid #aaaaaa;
+  margin-top: 1.0em;
   line-height: 1.2em; }
 
 h1.title {
   padding-bottom: 1em;
   border-bottom: 0px;
-  font-size: 2.5em;
-  text-align: center;
-  font-weight: 900;
-  margin-top: 0.75em;
-  margin-bottom: 0em;
-}
+  font-size: 2.75em; }
 
 h2 {
-  font-size: 1.3em;
-  margin-top: 2em; }
-
-h2.subtitle {
-  text-align: center; }
-
-h3 {
-  font-size: 1.125em;
-  font-style: italic;
+  font-size: 1.5em;
   margin-top: 1.5em; }
 
+h3 {
+  font-size: 1.3em;
+  font-style: italic;
+  margin-top: 0.75em; }
+
 h4 {
-  font-size: 1.125em;
-  margin-top: 1em; }
+  font-size: 1.3em;
+  margin-top: 0.5em; }
 
 h5 {
-  font-size: 1.125em;
-  margin-top: 0.75em; }
+  font-size: 1.2em;
+  margin-top: 0.25em; }
 
 h6 {
   font-size: 1.1em; }
 
-
 ul,
 ol {
   padding: 0;
-  margin-top: 0.5em;
-  margin-left: 0.75em; }
+  margin: 0 0 0px 15px; }
 
 ul ul,
 ul ol,
 ol ol,
 ol ul {
-  margin-bottom: 0;
-  margin-left: 1.25em; }
+  margin-bottom: 0; }
 
 li {
-    list-style-type: circle;
-}
-
-ul.simple-boot li {
-    list-style-type: none;
-    margin-left: 0em;
-    margin-bottom: 0.5em;
-}
-
-ol.simple > li, ul.simple > li {
-  margin-bottom: 0.25em;
-  margin-left: 0.4em }
-
-ul.simple.simple-toc > li {
-    margin-top: 1em;
-}
-
-ul.simple-toc {
-  list-style: none;
-  font-size: 0.9em;
-  margin-left: -0.3em;
-  margin-top: 1em; }
-
-ul.simple-toc > li {
-    list-style-type: none;
-}
-
-ul.simple-toc-section {
-  list-style-type: circle;
-  margin-left: 1em;
-  color: #6c9aae; }
-
-
-ol.arabic {
-  list-style: decimal; }
-
-ol.loweralpha {
-  list-style: lower-alpha; }
-
-ol.upperalpha {
-  list-style: upper-alpha; }
-
-ol.lowerroman {
-  list-style: lower-roman; }
-
-ol.upperroman {
-  list-style: upper-roman; }
-
-ul.auto-toc {
-  list-style-type: none; }
-
+  line-height: 20px; }
 
 dl {
-  margin-bottom: 1.5em; }
+  margin-bottom: 20px; }
+
+dt,
+dd {
+  line-height: 20px; }
 
 dt {
-  margin-bottom: -0.5em;
-  margin-left: 0.5em; }
+  font-weight: bold; }
 
 dd {
-  margin-left: 0.5em;
-  margin-bottom: 2.5em;
-  margin-top: 0.5em; }
-
+  margin-left: 10px;
+  margin-bottom: 26px; }
 
 hr {
-  margin: 2em 0;
+  margin: 20px 0;
   border: 0;
-  border-top: 1px solid #aaa; }
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #ffffff; }
+
+abbr[title],
+abbr[data-original-title] {
+  cursor: help;
+  border-bottom: 1px dotted #999999; }
+
+abbr.initialism {
+  font-size: 90%;
+  text-transform: uppercase; }
 
 blockquote {
-  font-size: 0.9em;
-  font-style: italic;
-  padding-left: 0.5em;
-  margin-left: 0;
-  border-left: 5px solid #bbc;
+  padding: 0 0 0 15px;
+  margin: 0 0 20px;
+  border-left: 5px solid #EFEBE0; }
+
+table.docinfo + blockquote, table.docinfo blockquote, h1 + blockquote {
+  border-left: 5px solid #c9c9c9;
 }
+
+table.docinfo + blockquote p, table.docinfo blockquote p, h1 + blockquote p {
+  margin-bottom: 0;
+  font-size: 15px;
+  font-weight: 200;
+  line-height: 1.5;
+  font-style: italic; }
+
+q:before,
+q:after,
+blockquote:before,
+blockquote:after {
+  content: ""; }
+
+address {
+  display: block;
+  margin-bottom: 20px;
+  font-style: normal;
+  line-height: 20px; }
+
+code,
+pre {
+  font-family: "Source Code Pro", Monaco, Menlo, Consolas, "Courier New", monospace;
+  padding: 0 3px 2px;
+  font-weight: 500;
+  font-size: 12px;
+  color: #444444;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
 
 .pre {
   font-family: "Source Code Pro", Monaco, Menlo, Consolas, "Courier New", monospace;
-  font-weight: 500;
-  font-size: 0.85em;
-  background-color: #f0f3ff;
-  padding-left: 3px;
-  padding-right: 3px;
-  border-radius: 4px;
+  font-weight: 600;
+  /*color: #504da6;*/
 }
 
+code {
+  padding: 2px 4px;
+  color: #444444;
+  white-space: nowrap;
+  background-color: white;
+  border: 1px solid #777777; }
+
 pre {
-  font-family: "Source Code Pro", Monaco, Menlo, Consolas, "Courier New", monospace;
-  color: #222;
-  font-weight: 500;
   display: inline-block;
   box-sizing: border-box;
-  min-width: 100%;
-  padding: 0.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  font-size: 0.85em;
+  min-width: calc(100% - 19.5px);
+  padding: 9.5px;
+  margin: 0.25em 10px 10px 10px;
+  font-size: 15px;
+  line-height: 20px;
   white-space: pre !important;
   overflow-y: hidden;
   overflow-x: visible;
-  background-color: ghostwhite;
-  border: 1px solid #dde;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px; }
+  background-color: rgba(0, 0, 0, 0.01);
+  border: 1px solid #cccccc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px; }
+
+pre.prettyprint {
+  margin-bottom: 20px; }
+
+pre code {
+  padding: 0;
+  color: inherit;
+  white-space: pre;
+  overflow-x: visible;
+  background-color: transparent;
+  border: 0; }
 
 .pre-scrollable {
   max-height: 340px;
   overflow-y: scroll; }
 
-
-/* Nim line-numbered tables */
-.line-nums-table {
-  width: 100%;
-  table-layout: fixed; }
-
-table.line-nums-table {
-  border-radius: 4px;
-  border: 1px solid #cccccc;
-  background-color: ghostwhite;
-  border-collapse: separate;
-  margin-top: 15px;
-  margin-bottom: 25px; }
-
-.line-nums-table tbody {
-  border: none; }
-
-.line-nums-table td pre {
-  border: none;
-  background-color: transparent; }
-
-.line-nums-table td.blob-line-nums {
-  width: 28px; }
-
-.line-nums-table td.blob-line-nums pre {
-  color: #b0b0b0;
-  -webkit-filter: opacity(75%);
-  text-align: right;
-  border-color: transparent;
-  background-color: transparent;
-  padding-left: 0px;
-  margin-left: 0px;
-  padding-right: 0px;
-  margin-right: 0px; }
-
-
 table {
   max-width: 100%;
   background-color: transparent;
-  margin-top: 0.5em;
-  margin-bottom: 1.5em;
   border-collapse: collapse;
-  border-color: #ccc;
-  border-spacing: 0;
-  font-size: 0.9em;
-}
+  border-spacing: 0; }
 
 table th, table td {
-  padding: 0px 0.5em 0px;
+  padding: 0px 8px 0px;
 }
 
-table th {
-  background-color: #e8e8e8;
+.table {
+  width: 100%;
+  margin-bottom: 20px; }
+
+.table th,
+.table td {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #444444; }
+
+.table th {
   font-weight: bold; }
 
-table th.docinfo-name {
-    background-color: transparent;
-}
+.table thead th {
+  vertical-align: bottom; }
 
-table tr:hover {
-  background-color: ghostwhite; }
+.table caption + thead tr:first-child th,
+.table caption + thead tr:first-child td,
+.table colgroup + thead tr:first-child th,
+.table colgroup + thead tr:first-child td,
+.table thead:first-child tr:first-child th,
+.table thead:first-child tr:first-child td {
+  border-top: 0; }
 
+.table tbody + tbody {
+  border-top: 2px solid #444444; }
+
+.table .table {
+  background-color: rgba(252, 248, 244, 0.75); }
+
+.table-condensed th,
+.table-condensed td {
+  padding: 4px 5px; }
+
+.table-bordered {
+  border: 1px solid #444444;
+  border-collapse: separate;
+  *border-collapse: collapse;
+  border-left: 0;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px; }
+
+.table-bordered th,
+.table-bordered td {
+  border-left: 1px solid #444444; }
+
+.table-bordered caption + thead tr:first-child th,
+.table-bordered caption + tbody tr:first-child th,
+.table-bordered caption + tbody tr:first-child td,
+.table-bordered colgroup + thead tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child th,
+.table-bordered colgroup + tbody tr:first-child td,
+.table-bordered thead:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child th,
+.table-bordered tbody:first-child tr:first-child td {
+  border-top: 0; }
+
+.table-bordered thead:first-child tr:first-child > th:first-child,
+.table-bordered tbody:first-child tr:first-child > td:first-child,
+.table-bordered tbody:first-child tr:first-child > th:first-child {
+  -webkit-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px; }
+
+.table-bordered thead:first-child tr:first-child > th:last-child,
+.table-bordered tbody:first-child tr:first-child > td:last-child,
+.table-bordered tbody:first-child tr:first-child > th:last-child {
+  -webkit-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px; }
+
+.table-bordered thead:last-child tr:last-child > th:first-child,
+.table-bordered tbody:last-child tr:last-child > td:first-child,
+.table-bordered tbody:last-child tr:last-child > th:first-child,
+.table-bordered tfoot:last-child tr:last-child > td:first-child,
+.table-bordered tfoot:last-child tr:last-child > th:first-child {
+  -webkit-border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px; }
+
+.table-bordered thead:last-child tr:last-child > th:last-child,
+.table-bordered tbody:last-child tr:last-child > td:last-child,
+.table-bordered tbody:last-child tr:last-child > th:last-child,
+.table-bordered tfoot:last-child tr:last-child > td:last-child,
+.table-bordered tfoot:last-child tr:last-child > th:last-child {
+  -webkit-border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px; }
+
+.table-bordered tfoot + tbody:last-child tr:last-child td:first-child {
+  -webkit-border-bottom-left-radius: 0;
+  border-bottom-left-radius: 0;
+  -moz-border-radius-bottomleft: 0; }
+
+.table-bordered tfoot + tbody:last-child tr:last-child td:last-child {
+  -webkit-border-bottom-right-radius: 0;
+  border-bottom-right-radius: 0;
+  -moz-border-radius-bottomright: 0; }
+
+.table-bordered caption + thead tr:first-child th:first-child,
+.table-bordered caption + tbody tr:first-child td:first-child,
+.table-bordered colgroup + thead tr:first-child th:first-child,
+.table-bordered colgroup + tbody tr:first-child td:first-child {
+  -webkit-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px; }
+
+.table-bordered caption + thead tr:first-child th:last-child,
+.table-bordered caption + tbody tr:first-child td:last-child,
+.table-bordered colgroup + thead tr:first-child th:last-child,
+.table-bordered colgroup + tbody tr:first-child td:last-child {
+  -webkit-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px; }
+
+table.docutils th {
+  background-color: #e8e8e8; }
+
+table.docutils tr:hover {
+  background-color: whitesmoke; }
+
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+  background-color: rgba(252, 248, 244, 0.75); }
+
+.table-hover tbody tr:hover > td,
+.table-hover tbody tr:hover > th {
+  background-color: rgba(241, 222, 204, 0.75); }
+
+table td[class*="span"],
+table th[class*="span"],
+.row-fluid table td[class*="span"],
+.row-fluid table th[class*="span"] {
+  display: table-cell;
+  float: none;
+  margin-left: 0; }
+
+.hero-unit {
+  padding: 60px;
+  margin-bottom: 30px;
+  font-size: 18px;
+  font-weight: 200;
+  line-height: 30px;
+  color: inherit;
+  background-color: rgba(230, 197, 164, 0.75);
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px; }
+
+.hero-unit h1 {
+  margin-bottom: 0;
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: inherit; }
+
+.hero-unit li {
+  line-height: 30px; }
 
 /* rst2html default used to remove borders from tables and images */
 .borderless, table.borderless td, table.borderless th {
@@ -482,6 +722,10 @@ table.borderless td, table.borderless th {
 .hidden {
   display: none; }
 
+a.toc-backref {
+  text-decoration: none;
+  color: #444444; }
+
 blockquote.epigraph {
   margin: 2em 5em; }
 
@@ -491,6 +735,85 @@ dl.docutils dd {
 object[type="image/svg+xml"], object[type="application/x-shockwave-flash"] {
   overflow: hidden; }
 
+/* Uncomment (and remove this text!) to get bold-faced definition list terms
+dl.docutils dt {
+  font-weight: bold }
+*/
+div.abstract {
+  margin: 2em 5em; }
+
+div.abstract p.topic-title {
+  font-weight: bold;
+  text-align: center; }
+
+div.admonition, div.attention, div.caution, div.danger, div.error,
+div.hint, div.important, div.note, div.tip, div.warning {
+  margin: 2em;
+  border: medium outset;
+  padding: 1em; }
+
+div.note, div.warning {
+  margin: 1.5em 0px;
+  border: none; }
+
+div.note p.admonition-title,
+div.warning p.admonition-title {
+  display: none; }
+
+/* Clearfix
+ * http://css-tricks.com/snippets/css/clear-fix/
+ */
+div.note:after,
+div.warning:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+div.note p:before,
+div.warning p:before {
+  display: block;
+  float: left;
+  font-size: 4em;
+  line-height: 1em;
+  margin-right: 20px;
+  margin-left: 0em;
+  margin-top: -10px;
+  content: '\0270D';
+  /*handwriting*/ }
+
+div.warning p:before {
+  content: '\026A0';
+  /*warning*/ }
+
+div.admonition p.admonition-title, div.hint p.admonition-title,
+div.important p.admonition-title, div.note p.admonition-title,
+div.tip p.admonition-title {
+  font-weight: bold;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; }
+
+div.attention p.admonition-title, div.caution p.admonition-title,
+div.danger p.admonition-title, div.error p.admonition-title,
+div.warning p.admonition-title, .code .error {
+  color: #b30000;
+  font-weight: bold;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; }
+
+/* Uncomment (and remove this text!) to get reduced vertical space in
+   compound paragraphs.
+div.compound .compound-first, div.compound .compound-middle {
+  margin-bottom: 0.5em }
+
+div.compound .compound-last, div.compound .compound-middle {
+  margin-top: 0.5em }
+*/
+div.dedication {
+  margin: 2em 5em;
+  text-align: center;
+  font-style: italic; }
+
+div.dedication p.topic-title {
+  font-weight: bold;
+  font-style: normal; }
 
 div.figure {
   margin-left: 2em;
@@ -498,13 +821,7 @@ div.figure {
 
 div.footer, div.header {
   clear: both;
-  text-align: center;
-  color: #666;
   font-size: smaller; }
-
-div.footer {
-    padding-top: 5em;
-}
 
 div.line-block {
   display: block;
@@ -516,24 +833,45 @@ div.line-block div.line-block {
   margin-bottom: 0;
   margin-left: 1.5em; }
 
+div.sidebar {
+  margin: 0 0 0.5em 1em;
+  border: medium outset;
+  padding: 1em;
+  background-color: rgba(252, 248, 244, 0.75);
+  width: 40%;
+  float: right;
+  clear: right; }
+
+div.sidebar p.rubric {
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  font-size: medium; }
+
+div.system-messages {
+  margin: 5em; }
+
+div.system-messages h1 {
+  color: #b30000; }
+
+div.system-message {
+  border: medium outset;
+  padding: 1em; }
+
+div.system-message p.system-message-title {
+  color: #b30000;
+  font-weight: bold; }
+
 div.topic {
   margin: 2em; }
 
-div.search_results {
-  background-color: antiquewhite;
-  margin: 3em;
-  padding: 1em;
-  border: 1px solid #4d4d4d;
-}
+h1.section-subtitle, h2.section-subtitle, h3.section-subtitle,
+h4.section-subtitle, h5.section-subtitle, h6.section-subtitle {
+  margin-top: 0.4em; }
 
-div#global-links ul {
-  margin-left: 0;
-  list-style-type: none;
-}
+h1.title {
+  text-align: center; }
 
-div#global-links > simple-boot {
-    margin-left: 3em;
-}
+h2.subtitle {
+  text-align: center; }
 
 hr.docutils {
   width: 75%; }
@@ -567,6 +905,30 @@ img.align-center, .figure.align-center, object.align-center {
 div.align-right {
   text-align: inherit; }
 
+/* div.align-center * { */
+/*   text-align: left } */
+
+ul.simple > li {
+  margin-bottom: 0.5em }
+
+ol.simple, ul.simple {
+  margin-bottom: 1em; }
+
+ol.arabic {
+  list-style: decimal; }
+
+ol.loweralpha {
+  list-style: lower-alpha; }
+
+ol.upperalpha {
+  list-style: upper-alpha; }
+
+ol.lowerroman {
+  list-style: lower-roman; }
+
+ol.upperroman {
+  list-style: upper-roman; }
+
 p.attribution {
   text-align: right;
   margin-left: 50%; }
@@ -586,6 +948,15 @@ p.rubric {
   font-size: larger;
   color: maroon;
   text-align: center; }
+
+p.sidebar-title {
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  font-size: larger; }
+
+p.sidebar-subtitle {
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
+  font-weight: bold; }
 
 p.topic-title {
   font-weight: bold; }
@@ -626,13 +997,21 @@ pre.code .inserted, code .inserted {
   background-color: #A3D289; }
 
 span.classifier {
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-style: oblique; }
 
 span.classifier-delimiter {
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif;
   font-weight: bold; }
+
+span.interpreted {
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif; }
 
 span.option {
   white-space: nowrap; }
+
+span.pre {
+  white-space: pre; }
 
 span.problematic {
   color: #b30000; }
@@ -640,6 +1019,44 @@ span.problematic {
 span.section-subtitle {
   /* font-size relative to parent (h1..h6 element) */
   font-size: 80%; }
+
+table.citation {
+  border-left: solid 1px #666666;
+  margin-left: 1px; }
+
+table.docinfo {
+  margin: 0em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-family: "Lato", "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, sans-serif !important;
+  color: #444444; }
+
+table.docutils {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em; }
+
+table.footnote {
+  border-left: solid 1px #2d2d2d;
+  margin-left: 1px; }
+
+table.docutils td, table.docutils th,
+table.docinfo td, table.docinfo th {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  vertical-align: top; }
+
+table.docutils th.field-name, table.docinfo th.docinfo-name {
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+  padding-left: 0; }
+
+h1 tt.docutils, h2 tt.docutils, h3 tt.docutils,
+h4 tt.docutils, h5 tt.docutils, h6 tt.docutils {
+  font-size: 100%; }
+
+ul.auto-toc {
+  list-style-type: none; }
 
 span.DecNumber {
   color: #252dbe; }
@@ -657,7 +1074,7 @@ span.FloatNumber {
   color: #252dbe; }
 
 span.Identifier {
-  color: #222; }
+  color: #3b3b3b; }
 
 span.Keyword {
   font-weight: 600;
@@ -722,22 +1139,37 @@ dt pre > span.Identifier, dt pre > span.Operator {
   color: #155da4;
   font-weight: 700; }
 
-dt pre > span.Keyword ~ span.Identifier, dt pre > span.Identifier ~ span.Identifier,
-dt pre > span.Operator ~ span.Identifier, dt pre > span.Other ~ span.Identifier {
+dt pre > span.Identifier ~ span.Identifier, dt pre > span.Operator ~ span.Identifier {
+  color: inherit;
+  font-weight: inherit; }
+
+dt pre > span.Operator ~ span.Identifier {
   color: inherit;
   font-weight: inherit; }
 
 /* Nim sprite for the footer (taken from main page favicon) */
 .nim-sprite {
   display: inline-block;
-  height: 16px;
-  width: 16px;
+  height: 12px;
+  width: 12px;
   background-position: 0 0;
-  background-size: 16px 16px;
+  background-size: 12px 12px;
   -webkit-filter: opacity(50%);
   background-repeat: no-repeat;
   background-image: url("data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAUAAAAF////AP///wD///8A////AP///wD///8A////AP///wD///8A////AAAAAAIAAABbAAAAlQAAAKIAAACbAAAAmwAAAKIAAACVAAAAWwAAAAL///8A////AP///wD///8A////AAAAABQAAADAAAAAYwAAAA3///8A////AP///wD///8AAAAADQAAAGMAAADAAAAAFP///wD///8A////AP///wAAAACdAAAAOv///wD///8A////AP///wD///8A////AP///wD///8AAAAAOgAAAJ3///8A////AP///wAAAAAnAAAAcP///wAAAAAoAAAASv///wD///8A////AP///wAAAABKAAAAKP///wAAAABwAAAAJ////wD///8AAAAAgQAAABwAAACIAAAAkAAAAJMAAACtAAAAFQAAABUAAACtAAAAkwAAAJAAAACIAAAAHAAAAIH///8A////AAAAAKQAAACrAAAAaP///wD///8AAAAARQAAANIAAADSAAAARf///wD///8AAAAAaAAAAKsAAACk////AAAAADMAAACcAAAAnQAAABj///8A////AP///wAAAAAYAAAAGP///wD///8A////AAAAABgAAACdAAAAnAAAADMAAAB1AAAAwwAAAP8AAADpAAAAsQAAAE4AAAAb////AP///wAAAAAbAAAATgAAALEAAADpAAAA/wAAAMMAAAB1AAAAtwAAAOkAAAD/AAAA/wAAAP8AAADvAAAA3gAAAN4AAADeAAAA3gAAAO8AAAD/AAAA/wAAAP8AAADpAAAAtwAAAGUAAAA/AAAA3wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAAD/AAAA/wAAAP8AAADfAAAAPwAAAGX///8A////AAAAAEgAAADtAAAAvwAAAL0AAADGAAAA7wAAAO8AAADGAAAAvQAAAL8AAADtAAAASP///wD///8A////AP///wD///8AAAAAO////wD///8A////AAAAAIcAAACH////AP///wD///8AAAAAO////wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A////AP///wD///8A//8AAP//AAD4HwAA7/cAAN/7AAD//wAAoYUAAJ55AACf+QAAh+EAAAAAAADAAwAA4AcAAP5/AAD//wAA//8AAA==");
   margin-bottom: -5px; }
+
+div.search_results {
+  background-color: antiquewhite;
+  margin: 3em;
+  padding: 1em;
+  border: 1px solid #4d4d4d;
+}
+
+div#global-links ul {
+  margin-left: 0;
+  list-style-type: none;
+}
 
 span.pragmadots {
   /* Position: relative frees us up to make the dots
@@ -746,14 +1178,18 @@ span.pragmadots {
   position: relative;
   /* 1px down looks slightly nicer */
   top: 1px;
+
   padding: 2px;
-  background-color: #e8e8e8;
+  background-color: #D3D3D3;
   border-radius: 4px;
   margin: 0 2px;
   cursor: pointer;
-  font-size: 0.8em;
-}
 
+  /* For some reason on Chrome, making the font size
+  smaller than 1em is causing the parent container to
+  bulge slightly. So, we're stuck with inheriting 1em,
+  which is sad, because 0.8em looks better... */
+}
 span.pragmadots:hover {
   background-color: #DBDBDB;
 }
@@ -825,13 +1261,13 @@ function main() {
     title="PopulateCb[T] = proc (ps: ResultSet; firstidx: int; maxcols: int; out_obj: var T) {.inline.}"><wbr />Populate<wbr />Cb<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#SQLite3ColumnMetaData"
     title="SQLite3ColumnMetaData = object of DbTableColumnMetaData
-  tableName: string
-  columnName: string
-  declDataType: string         ## decleared data type (note: sqlite stores the data typeless)
-  collationSeqName: string     ## how things are sorted
-  notNull: bool                ## true if column is defined as not null
-  partOfPK: bool               ## true if column is part of a pk
-  autoInc: bool                ## true if autoincremented"><wbr />SQLite3Column<wbr />Meta<wbr />Data<span class="attachedType" style="visibility:hidden"></span></a></li>
+  tableName*: string
+  columnName*: string
+  declDataType*: string        ## decleared data type (note: sqlite stores the data typeless)
+  collationSeqName*: string    ## how things are sorted
+  notNull*: bool               ## true if column is defined as not null
+  partOfPK*: bool              ## true if column is part of a pk
+  autoInc*: bool               ## true if autoincremented"><wbr />SQLite3Column<wbr />Meta<wbr />Data<span class="attachedType" style="visibility:hidden"></span></a></li>
 
   </ul>
 </li>
@@ -848,7 +1284,7 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#getResultSet%2CPreparedStatement%2CRCode"
     title="getResultSet(ps: PreparedStatement; out_rc: var RCode): ResultSet"><wbr />get<wbr />Result<wbr />Set<span class="attachedType" style="visibility:hidden">PreparedStatement</span></a></li>
-  <li><a class="reference" href="#sqlite3VersionStr"
+  <li><a class="reference" href="#sqlite3VersionStr%2C"
     title="sqlite3VersionStr(): string"><wbr />sqlite3Version<wbr />Str<span class="attachedType" style="visibility:hidden"></span></a></li>
   <li><a class="reference" href="#interrupt%2CDbConn"
     title="interrupt(conn: DbConn)"><wbr />interrupt<span class="attachedType" style="visibility:hidden">DbConn</span></a></li>
@@ -887,8 +1323,8 @@ function main() {
   <li><a class="reference" href="#bindString%2CPreparedStatement%2Cint%2Cstring%2CSQLite3UnbindCb"
     title="bindString(ps: PreparedStatement; paramIdx: int; val: var string;
            freeCb: SQLite3UnbindCb = nil): int"><wbr />bind<wbr />String<span class="attachedType" style="visibility:hidden">PreparedStatement</span></a></li>
-  <li><a class="reference" href="#bindStringUT%2CPreparedStatement%2Cint%2Cpointer%2Cint%2CSQLite3UnbindCb"
-    title="bindStringUT(ps: PreparedStatement; paramIdx: int; val: pointer; val_len: int;
+  <li><a class="reference" href="#bindStringUT%2CPreparedStatement%2Cint%2Cpointer%2Cint32%2CSQLite3UnbindCb"
+    title="bindStringUT(ps: PreparedStatement; paramIdx: int; val: pointer; val_len: int32;
              freeCb: SQLite3UnbindCb = nil): int"><wbr />bind<wbr />String<wbr />UT<span class="attachedType" style="visibility:hidden">PreparedStatement</span></a></li>
   <li><a class="reference" href="#bindBlob%2CPreparedStatement%2Cint%2COption%5Bseq%5Bbyte%5D%5D%2CSQLite3UnbindCb"
     title="bindBlob(ps: PreparedStatement; paramIdx: int; val: var Option[seq[byte]];
@@ -896,8 +1332,8 @@ function main() {
   <li><a class="reference" href="#bindBlob%2CPreparedStatement%2Cint%2Cseq%5Bbyte%5D%2CSQLite3UnbindCb"
     title="bindBlob(ps: PreparedStatement; paramIdx: int; val: var seq[byte];
          freeCb: SQLite3UnbindCb = nil): int"><wbr />bind<wbr />Blob<span class="attachedType" style="visibility:hidden">PreparedStatement</span></a></li>
-  <li><a class="reference" href="#bindBlobUT%2CPreparedStatement%2Cint%2Cpointer%2Cint%2CSQLite3UnbindCb"
-    title="bindBlobUT(ps: PreparedStatement; paramIdx: int; val: pointer; val_len: int;
+  <li><a class="reference" href="#bindBlobUT%2CPreparedStatement%2Cint%2Cpointer%2Cint32%2CSQLite3UnbindCb"
+    title="bindBlobUT(ps: PreparedStatement; paramIdx: int; val: pointer; val_len: int32;
            freeCb: SQLite3UnbindCb = nil): int"><wbr />bind<wbr />Blob<wbr />UT<span class="attachedType" style="visibility:hidden">PreparedStatement</span></a></li>
   <li><a class="reference" href="#bulkBind%2CPreparedStatement%2CopenArray%5BT%5D%2CBulkBindToColsCb%2Cint%2CRCode%2Cint"
     title="bulkBind[T](ps: PreparedStatement; binds: var openArray[T];
@@ -937,7 +1373,7 @@ function main() {
   <li><a class="reference" href="#fetchColumnCount%2CResultSet"
     title="fetchColumnCount(rs: var ResultSet): int"><wbr />fetch<wbr />Column<wbr />Count<span class="attachedType" style="visibility:hidden">ResultSet</span></a></li>
   <li><a class="reference" href="#fetchColumnNames%2CResultSet%2Cseq%5Bstring%5D"
-    title="fetchColumnNames(ps: var ResultSet; out_colnames: var seq[string])"><wbr />fetch<wbr />Column<wbr />Names<span class="attachedType" style="visibility:hidden">ResultSet</span></a></li>
+    title="fetchColumnNames(ps: ResultSet; out_colnames: var seq[string])"><wbr />fetch<wbr />Column<wbr />Names<span class="attachedType" style="visibility:hidden">ResultSet</span></a></li>
   <li><a class="reference" href="#cleanupAllocatedResources%2CDbConn%2CRCode"
     title="cleanupAllocatedResources(db: DbConn; resultcode: var RCode)"><wbr />cleanup<wbr />Allocated<wbr />Resources<span class="attachedType" style="visibility:hidden">DbConn</span></a></li>
   <li><a class="reference" href="#exec%2CDbConn%2CSqlQuery%2CRCode"
@@ -976,8 +1412,8 @@ function main() {
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#allOpenPreparedStatements.i%2CDbConn"
     title="allOpenPreparedStatements(db: DbConn): PreparedStatement"><wbr />all<wbr />Open<wbr />Prepared<wbr />Statements<span class="attachedType" style="visibility:hidden">DbConn</span></a></li>
-  <li><a class="reference" href="#validateSql.i%2CDbConn%2Cseq%5BSqlQuery%5D"
-    title="validateSql(dbconn: DbConn; queries: seq[SqlQuery]): string"><wbr />validate<wbr />Sql<span class="attachedType" style="visibility:hidden">DbConn</span></a></li>
+  <li><a class="reference" href="#validateSql.i%2CDbConn%2CopenArray%5BSqlQuery%5D%2CRCode"
+    title="validateSql(dbconn: DbConn; queries: openArray[SqlQuery]; rc: var RCode): string"><wbr />validate<wbr />Sql<span class="attachedType" style="visibility:hidden">DbConn</span></a></li>
 
   </ul>
 </li>
@@ -1002,8 +1438,8 @@ function main() {
     title="resetPreparedStatement(ps: PreparedStatement; out_rc: var RCode)"><wbr />reset<wbr />Prepared<wbr />Statement<span class="attachedType" style="visibility:hidden">PreparedStatement</span></a></li>
   <li><a class="reference" href="#withTransaction.t%2CDbConn%2CRCode%2Cuntyped"
     title="withTransaction(dbconn: DbConn; rc: var RCode; body: untyped)"><wbr />with<wbr />Transaction<span class="attachedType" style="visibility:hidden">DbConn</span></a></li>
-  <li><a class="reference" href="#withPreparedStatement.t%2CPreparedStatement%2CRCode%2Cuntyped"
-    title="withPreparedStatement(ps: PreparedStatement; rcode: var RCode; body: untyped)"><wbr />with<wbr />Prepared<wbr />Statement<span class="attachedType" style="visibility:hidden">PreparedStatement</span></a></li>
+  <li><a class="reference" href="#withFinalisePreparedStatement.t%2CPreparedStatement%2CRCode%2Cuntyped"
+    title="withFinalisePreparedStatement(ps: PreparedStatement; rcode: var RCode; body: untyped)"><wbr />with<wbr />Finalise<wbr />Prepared<wbr />Statement<span class="attachedType" style="visibility:hidden">PreparedStatement</span></a></li>
   <li><a class="reference" href="#rawBind.t%2CPreparedStatement%2CRCode%2Cuntyped"
     title="rawBind(ps: PreparedStatement; out_rc: var RCode; body: untyped): untyped"><wbr />raw<wbr />Bind<span class="attachedType" style="visibility:hidden">PreparedStatement</span></a></li>
   <li><a class="reference" href="#rawFetch.t%2CResultSet%2CRCode%2Cuntyped"
@@ -1036,7 +1472,8 @@ function main() {
 <li>metadata api (column-names and columntypes of tables can be retrieved)</li>
 <li>db_sqlite importable without symbol clash</li>
 </ul>
-<p>Note about string- and blob-handling: this comes in two flavours: traced and untraced. The traced version (which should be sufficient for most use cases) copies the blob/varchar immediately into a seq[byte]/nimstring while reading. The unmanaged version only provides the backend pointer and length; the content must copied immediately into the application domain. writing into db is straightforward; the optional destructor callback is provided for both flavours. if the destructor callback is not used the object/ptr should stay valid till the transaction ends.</p>
+<p>Note about string- and blob-handling: this comes in two flavours: traced and untraced. The traced version (which should be sufficient for most use cases) copies the blob/varchar immediately into a seq[byte]/nimstring while reading. The unmanaged version only provides the backend pointer and length; the content must copied (before consuming the resultSet's next row ) into the application domain.</p>
+<p>storing into db is straightforward; the optional destructor callback is provided for both flavours. if the destructor callback is not used the object/ptr should stay valid till the transaction ends.</p>
 <p>no implicit type conversion is performed - the caller needs to take care of the types expected. If the type does not match, sqlite tries a implicit type conversion. Further reading: <a class="reference external" href="https://www.sqlite.org/datatype3.html">https://www.sqlite.org/datatype3.html</a></p>
 <p>in-memory-operation: keep in mind that each open(::inmemory::) opens a new database unless in shared cache mode - if you like to use a connectionpool be sure that the shared cache of sqlite3 is activated (untested)</p>
 <p>At the moment no examples are within this doc. for examples please take a look at the examples subdirectory. the entire source was compiled with compiler version 0.19.9 / git hash: 28a83a838821cbe3efc8ddd412db966ca164ef5c</p>
@@ -1058,19 +1495,19 @@ function main() {
 <a id="PreparedStatement"></a>
 <dt><pre><a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a> <span class="Other">=</span> <span class="Identifier">nimdb_sqlite3w</span><span class="Other">.</span><span class="Identifier">Pstmt</span></pre></dt>
 <dd>
-
+sqlite3's preparedStatement handle 
 
 </dd>
 <a id="ResultSet"></a>
 <dt><pre><a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a> <span class="Other">=</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a></pre></dt>
 <dd>
-
+needed to obtain the backend's results on a 'per row' base. update is not supported
 
 </dd>
 <a id="RCode"></a>
 <dt><pre><a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a> <span class="Other">=</span> <span class="Identifier">nimdb_common</span><span class="Other">.</span><span class="Identifier">RCode</span></pre></dt>
 <dd>
-
+backends returncode collector. the vendorcode can be evaluated with the 'eval' templates (evalBindError/evalHasError/hasRows)
 
 </dd>
 <a id="BulkBindToColsCb"></a>
@@ -1087,13 +1524,13 @@ function main() {
 </dd>
 <a id="SQLite3ColumnMetaData"></a>
 <dt><pre><a href="nimdb_sqlite3.html#SQLite3ColumnMetaData"><span class="Identifier">SQLite3ColumnMetaData</span></a> <span class="Other">=</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="nimdb_common.html#DbTableColumnMetaData"><span class="Identifier">DbTableColumnMetaData</span></a>
-  <span class="Identifier">tableName</span><span class="Other">:</span> <span class="Identifier">string</span>
-  <span class="Identifier">columnName</span><span class="Other">:</span> <span class="Identifier">string</span>
-  <span class="Identifier">declDataType</span><span class="Other">:</span> <span class="Identifier">string</span>         <span class="Comment">## decleared data type (note: sqlite stores the data typeless)</span>
-  <span class="Identifier">collationSeqName</span><span class="Other">:</span> <span class="Identifier">string</span>     <span class="Comment">## how things are sorted</span>
-  <span class="Identifier">notNull</span><span class="Other">:</span> <span class="Identifier">bool</span>                <span class="Comment">## true if column is defined as not null</span>
-  <span class="Identifier">partOfPK</span><span class="Other">:</span> <span class="Identifier">bool</span>               <span class="Comment">## true if column is part of a pk</span>
-  <span class="Identifier">autoInc</span><span class="Other">:</span> <span class="Identifier">bool</span>                <span class="Comment">## true if autoincremented</span>
+  <span class="Identifier">tableName</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">columnName</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
+  <span class="Identifier">declDataType</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>        <span class="Comment">## decleared data type (note: sqlite stores the data typeless)</span>
+  <span class="Identifier">collationSeqName</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>    <span class="Comment">## how things are sorted</span>
+  <span class="Identifier">notNull</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">bool</span>               <span class="Comment">## true if column is defined as not null</span>
+  <span class="Identifier">partOfPK</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">bool</span>              <span class="Comment">## true if column is part of a pk</span>
+  <span class="Identifier">autoInc</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">bool</span>               <span class="Comment">## true if autoincremented</span>
   </pre></dt>
 <dd>
 
@@ -1116,26 +1553,26 @@ defines the vendors leftmost parameter of the parameterized sql-query
 <h1><a class="toc-backref" href="#12">Procs</a></h1>
 <dl class="item">
 <a id="getResultSet,PreparedStatement,RCode"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#getResultSet%2CPreparedStatement%2CRCode"><span class="Identifier">getResultSet</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">getResultSet</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 the resultSet is automatically advanced to the first row ready to read. If the out_columnCount is 0, the statement was no select statement or already returned SQLITE_DONE. The PreparedStatement performs a 'wind-back' on each call of getResultSet (query is re-executed)
 
 </dd>
-<a id="sqlite3VersionStr"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#sqlite3VersionStr"><span class="Identifier">sqlite3VersionStr</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="sqlite3VersionStr,"></a>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">sqlite3VersionStr</span><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 debugging purpose. returns the version and libversion_number as string
 
 </dd>
 <a id="interrupt,DbConn"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#interrupt%2CDbConn"><span class="Identifier">interrupt</span></a><span class="Other">(</span><span class="Identifier">conn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">interrupt</span><span class="Other">(</span><span class="Identifier">conn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 interrupts the current running query. Rollback is executed for a insert/update/delete. call this from a different thread (see sqlite3_busy_handler)
 
 </dd>
 <a id="open,string,string,string,RCode,int,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#open%2Cstring%2Cstring%2Cstring%2CRCode%2Cint%2Cint"><span class="Identifier">open</span></a><span class="Other">(</span><span class="Identifier">filename</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">user</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">password</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">out_param</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">open</span><span class="Other">(</span><span class="Identifier">filename</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">user</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">password</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">out_param</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span>
          <span class="Identifier">out_param_ext</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">flags</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">2</span> <span class="Keyword">or</span> <span class="DecNumber">4</span><span class="Other">)</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">DbEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 <p>Opens a connection to the specified database.  Utilizes the sqlite open_v2 interface. Parameters 'user' and 'password' are unused. if SQLITE_CANTOPEN is returned the out_param_ext is set by the wrapper call 'sqlite3_system_errno'.</p>
@@ -1146,7 +1583,7 @@ interrupts the current running query. Rollback is executed for a insert/update/d
 
 </dd>
 <a id="openReadonly,string,string,string,RCode,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#openReadonly%2Cstring%2Cstring%2Cstring%2CRCode%2Cint"><span class="Identifier">openReadonly</span></a><span class="Other">(</span><span class="Identifier">filename</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">user</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">password</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">openReadonly</span><span class="Other">(</span><span class="Identifier">filename</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">user</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">password</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
                  <span class="Identifier">out_param</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">out_param_ext</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">DbEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
@@ -1154,13 +1591,13 @@ vendor specific operation. Opens a database in readonly mode. The database file 
 
 </dd>
 <a id="close,DbConn,RCode"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#close%2CDbConn%2CRCode"><span class="Identifier">close</span></a><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">out_par</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">DbEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">close</span><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">out_par</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">DbEffect</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 closes the database connection.
 
 </dd>
 <a id="dumpDbTo,DbConn,DbConn,RCode,string,string"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#dumpDbTo%2CDbConn%2CDbConn%2CRCode%2Cstring%2Cstring"><span class="Identifier">dumpDbTo</span></a><span class="Other">(</span><span class="Identifier">srcConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">dstConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">outpar</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">dumpDbTo</span><span class="Other">(</span><span class="Identifier">srcConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">dstConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">outpar</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span>
              <span class="Identifier">srcDbName</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;main&quot;</span><span class="Other">;</span> <span class="Identifier">dstDbName</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;main&quot;</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
@@ -1172,109 +1609,109 @@ closes the database connection.
 
 </dd>
 <a id="$,Pstmt"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#%24%2CPstmt"><span class="Identifier">`$`</span></a><span class="Other">(</span><span class="Identifier">p</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3w.html#Pstmt"><span class="Identifier">Pstmt</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">`$`</span><span class="Other">(</span><span class="Identifier">p</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3w.html#Pstmt"><span class="Identifier">Pstmt</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Gets the normalized string representation out of the prepared statement. Could be used as a key for caching the statements in a map
 
 </dd>
 <a id="$,RCode"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#%24%2CRCode"><span class="Identifier">`$`</span></a><span class="Other">(</span><span class="Identifier">par</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">`$`</span><span class="Other">(</span><span class="Identifier">par</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 debugging support converts the driver returncode into a string representation    
 
 </dd>
 <a id="bindInt32,PreparedStatement,int,int32"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindInt32%2CPreparedStatement%2Cint%2Cint32"><span class="Identifier">bindInt32</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindInt32</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Binds a 32bit integer. no null handling is performed
 
 </dd>
 <a id="bindInt32,PreparedStatement,int,Option[int32]"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindInt32%2CPreparedStatement%2Cint%2COption%5Bint32%5D"><span class="Identifier">bindInt32</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">int32</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindInt32</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">int32</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Binds a 32bit integer to the specified paramIndex. performs null handling. The return value is the sqlite returncode which can be evaluated by the evalHasError/evalBindError template
 
 </dd>
 <a id="bindInt64,PreparedStatement,int,int64"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindInt64%2CPreparedStatement%2Cint%2Cint64"><span class="Identifier">bindInt64</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindInt64</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">int64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Binds a 64bit integer to thespecified paramIndex. this version performs no null handling and is suitable for bulk update/insert. the return value is the sqlite returncode which can be evaluated by the evalHasError/evalBindError template
 
 </dd>
 <a id="bindInt64,PreparedStatement,int,Option[int64]"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindInt64%2CPreparedStatement%2Cint%2COption%5Bint64%5D"><span class="Identifier">bindInt64</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">int64</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindInt64</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">int64</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Binds a 64bit integer to the specified paramIndex. performs null handling. the return value is the sqlite returncode which can be evaluated by the evalHasError/evalBindError template
 
 </dd>
 <a id="bindFloat64,PreparedStatement,int,Option[float64]"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindFloat64%2CPreparedStatement%2Cint%2COption%5Bfloat64%5D"><span class="Identifier">bindFloat64</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">float64</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindFloat64</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">float64</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Binds a 64bit float to the specified paramIndex. performs null handling. the return value is the sqlite returncode which can be evaluated by evalHasError/evalBindError template
 
 </dd>
 <a id="bindFloat64,PreparedStatement,int,float64"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindFloat64%2CPreparedStatement%2Cint%2Cfloat64"><span class="Identifier">bindFloat64</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindFloat64</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">float64</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Binds a 64bit float to the specified paramIndex. This version performs no null handling and is suitable for bulk update/insert. The return value is the sqlite returncode which can be evaluated by the evalHasError/evalBindError template
 
 </dd>
 <a id="bindNull,PreparedStatement,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindNull%2CPreparedStatement%2Cint"><span class="Identifier">bindNull</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindNull</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
-Sets the bindparam at the specified paramIndex to null. the return value is the sqlite returncode which can be evaluated by the evalHasError/evalBindError template
+Sets the bindparam at the specified paramIndex to null (default behaviour by sqlite). the return value is the sqlite returncode which can be evaluated by the evalHasError/evalBindError template
 
 </dd>
 <a id="bindString,PreparedStatement,int,Option[string],SQLite3UnbindCb"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindString%2CPreparedStatement%2Cint%2COption%5Bstring%5D%2CSQLite3UnbindCb"><span class="Identifier">bindString</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindString</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">;</span>
                <span class="Identifier">freeCb</span><span class="Other">:</span> <span class="Identifier">SQLite3UnbindCb</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Binds a string to the specified paramIndex. managed version with null handling. The return value is the sqlite returncode which can be evaluated by the evalHasError/evalBindError template
 
 </dd>
 <a id="bindString,PreparedStatement,int,string,SQLite3UnbindCb"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindString%2CPreparedStatement%2Cint%2Cstring%2CSQLite3UnbindCb"><span class="Identifier">bindString</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">string</span><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindString</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">string</span><span class="Other">;</span>
                <span class="Identifier">freeCb</span><span class="Other">:</span> <span class="Identifier">SQLite3UnbindCb</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 binds a string to the specified paramIndex. managed version. this version is faster than the option type but nullhandling is not performed. the return value is the sqlite returncode which can be evaluated by the evalBindError template
 
 </dd>
-<a id="bindStringUT,PreparedStatement,int,pointer,int,SQLite3UnbindCb"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindStringUT%2CPreparedStatement%2Cint%2Cpointer%2Cint%2CSQLite3UnbindCb"><span class="Identifier">bindStringUT</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">val_len</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span>
+<a id="bindStringUT,PreparedStatement,int,pointer,int32,SQLite3UnbindCb"></a>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindStringUT</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">val_len</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">;</span>
                  <span class="Identifier">freeCb</span><span class="Other">:</span> <span class="Identifier">SQLite3UnbindCb</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Binds a string to the specified paramIndex. untraced version. The return value is the raw sqlite returncode which can be evaluated by the evalBindError template
 
 </dd>
 <a id="bindBlob,PreparedStatement,int,Option[seq[byte]],SQLite3UnbindCb"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindBlob%2CPreparedStatement%2Cint%2COption%5Bseq%5Bbyte%5D%5D%2CSQLite3UnbindCb"><span class="Identifier">bindBlob</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">byte</span><span class="Other">]</span><span class="Other">]</span><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindBlob</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">byte</span><span class="Other">]</span><span class="Other">]</span><span class="Other">;</span>
              <span class="Identifier">freeCb</span><span class="Other">:</span> <span class="Identifier">SQLite3UnbindCb</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
-binds a blob to the specified paramIndex. managed version. unless this callback is executed by the backend the sequence and it's contents needs to stay valid. If no callback was specified the binding method is SQLITE_STATIC. The return value is the sqlite returncode which can be evaluated by the evalHasError/evalBindError template
+binds a blob to the specified paramIndex. managed version. unless this callback is executed by the backend the sequence and it's contents need to stay valid. If no callback was specified the binding method is SQLITE_STATIC. The return value is the sqlite returncode which can be evaluated by the evalHasError/evalBindError template
 
 </dd>
 <a id="bindBlob,PreparedStatement,int,seq[byte],SQLite3UnbindCb"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindBlob%2CPreparedStatement%2Cint%2Cseq%5Bbyte%5D%2CSQLite3UnbindCb"><span class="Identifier">bindBlob</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">byte</span><span class="Other">]</span><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindBlob</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">byte</span><span class="Other">]</span><span class="Other">;</span>
              <span class="Identifier">freeCb</span><span class="Other">:</span> <span class="Identifier">SQLite3UnbindCb</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 binds a blob to the specified paramIndex. managed version. unless the callback was called by the backend the sequence needs to stay valid. if no callback was specified the binding method is SQLITE_STATIC this version is faster than the option type - nullhandling is not performed return value is the sqlite returncode which can be evaluated by the evalHasError/evalBindError template
 
 </dd>
-<a id="bindBlobUT,PreparedStatement,int,pointer,int,SQLite3UnbindCb"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bindBlobUT%2CPreparedStatement%2Cint%2Cpointer%2Cint%2CSQLite3UnbindCb"><span class="Identifier">bindBlobUT</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">val_len</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span>
+<a id="bindBlobUT,PreparedStatement,int,pointer,int32,SQLite3UnbindCb"></a>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bindBlobUT</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">paramIdx</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">val</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">val_len</span><span class="Other">:</span> <span class="Identifier">int32</span><span class="Other">;</span>
                <span class="Identifier">freeCb</span><span class="Other">:</span> <span class="Identifier">SQLite3UnbindCb</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 binds a blob to the specified index. untraced version. unless the callback was called the pointer needs to stay valid. if no callback was specified the binding method is SQLITE_STATIC return value is the sqlite returncode which can be evaluated by the evalHasError/evalBindError template
 
 </dd>
 <a id="bulkBind,PreparedStatement,openArray[T],BulkBindToColsCb,int,RCode,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#bulkBind%2CPreparedStatement%2CopenArray%5BT%5D%2CBulkBindToColsCb%2Cint%2CRCode%2Cint"><span class="Identifier">bulkBind</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">binds</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">bulkBind</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">binds</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span>
                 <span class="Identifier">bindCols</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#BulkBindToColsCb"><span class="Identifier">BulkBindToColsCb</span></a><span class="Other">;</span> <span class="Identifier">rowParamCount</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">out_msg</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span>
                 <span class="Identifier">paramIndex</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="Identifier">BindIdxStart</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span></pre></dt>
 <dd>
@@ -1284,103 +1721,103 @@ binds a blob to the specified index. untraced version. unless the callback was c
 
 </dd>
 <a id="newPreparedStatement,DbConn,SqlQuery,PreparedStatement,RCode"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#newPreparedStatement%2CDbConn%2CSqlQuery%2CPreparedStatement%2CRCode"><span class="Identifier">newPreparedStatement</span></a><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">SqlQuery</span><span class="Other">;</span> <span class="Identifier">out_ps</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">newPreparedStatement</span><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">SqlQuery</span><span class="Other">;</span> <span class="Identifier">out_ps</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span>
                          <span class="Identifier">out_returncode</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 returns a new compiled preparedStatement. out_returncode can be consumed the the 'eval' templates
 
 </dd>
 <a id="modifiedRowCount,DbConn"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#modifiedRowCount%2CDbConn"><span class="Identifier">modifiedRowCount</span></a><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int32</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">modifiedRowCount</span><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int32</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 reports how many rows were modified after the last statement/step execution 
 
 </dd>
 <a id="fetchInt64Opt,ResultSet,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchInt64Opt%2CResultSet%2Cint"><span class="Identifier">fetchInt64Opt</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">int64</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchInt64Opt</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">int64</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 fetches an integer at the given column position. in case of null option(none) is returned. only valid if SQLITE_ROW was returned from step(). the leftmost column is defined in the const ResultIdxStart
 
 </dd>
 <a id="fetchInt32Opt,ResultSet,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchInt32Opt%2CResultSet%2Cint"><span class="Identifier">fetchInt32Opt</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">int32</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchInt32Opt</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">int32</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 fetches an 32 bit integer at the given column position. only valid if SQLITE_ROW was returned from step(). the leftmost column starts with 0
 
 </dd>
 <a id="fetchInt64,ResultSet,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchInt64%2CResultSet%2Cint"><span class="Identifier">fetchInt64</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchInt64</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int64</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Fast fetch an integer at the given column position(without SQLITE_NULL check). only valid if SQLITE_ROW was returned from step(). If the column type does not match an internal conversion is performed - no error delivery is performed. 
 
 </dd>
 <a id="fetchInt32,ResultSet,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchInt32%2CResultSet%2Cint"><span class="Identifier">fetchInt32</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int32</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchInt32</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int32</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 fast fetch an integer at the given column position(without SQLITE_NULL check). Only valid if SQLITE_ROW was returned from step() if the column type does not match an internal conversion is performed no error delivery is performed. 
 
 </dd>
 <a id="fetchFloat64Opt,ResultSet,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchFloat64Opt%2CResultSet%2Cint"><span class="Identifier">fetchFloat64Opt</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">float64</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchFloat64Opt</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">float64</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 fetches a float at the given column position. managed version. null check are performed.
 
 </dd>
 <a id="fetchFloat64,ResultSet,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchFloat64%2CResultSet%2Cint"><span class="Identifier">fetchFloat64</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchFloat64</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">float64</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 fast fetch a float at the given column position. if the column type does not match an internal conversion is performed 
 
 </dd>
 <a id="fetchString,ResultSet,int,RCode"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchString%2CResultSet%2Cint%2CRCode"><span class="Identifier">fetchString</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchString</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Fetches a string at the given column position. traced version. In case of null option(none) is returned the NullValue is validated
 
 </dd>
 <a id="fetchString,ResultSet,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchString%2CResultSet%2Cint"><span class="Identifier">fetchString</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchString</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 fast fetch a string at the given column position. traced version.
 
 </dd>
 <a id="fetchStringUT,ResultSet,int,RCode"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchStringUT%2CResultSet%2Cint%2CRCode"><span class="Identifier">fetchStringUT</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchStringUT</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span>
     <span class="Identifier">stringptr</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">char</span><span class="Other">,</span> <span class="Identifier">len</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 fetches a string at the given column position. untraced version. the pointer is valid till the preparedStatement is moved to the next row. before advancing to the next row ensure that the data is copied into the application domain.
 
 </dd>
 <a id="fetchBlob,ResultSet,int,RCode"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchBlob%2CResultSet%2Cint%2CRCode"><span class="Identifier">fetchBlob</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">byte</span><span class="Other">]</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchBlob</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">Option</span><span class="Other">[</span><span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">byte</span><span class="Other">]</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 fetches an blob at the given column position. traced version. The blob is copied immediately into a sequence. If none is returned the errcode could be checked if dbNull wasn´t the result of an error condition
 
 </dd>
 <a id="fetchBlobUT,ResultSet,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchBlobUT%2CResultSet%2Cint"><span class="Identifier">fetchBlobUT</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">blobptr</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">,</span> <span class="Identifier">len</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchBlobUT</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">cpos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">blobptr</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">,</span> <span class="Identifier">len</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span>
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Fetches a blob at the given column position. untraced version. The pointer is valid till the preparedStatement is advanced to the next row with step() the content needs to be copied into the application domain.
 
 </dd>
 <a id="fetchRows,ResultSet,openArray[T],PopulateCb[T],RCode,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchRows%2CResultSet%2CopenArray%5BT%5D%2CPopulateCb%5BT%5D%2CRCode%2Cint"><span class="Identifier">fetchRows</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">out_rows</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">fetchCols</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PopulateCb"><span class="Identifier">PopulateCb</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchRows</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">out_rows</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">fetchCols</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PopulateCb"><span class="Identifier">PopulateCb</span></a><span class="Other">[</span><span class="Identifier">T</span><span class="Other">]</span><span class="Other">;</span>
                  <span class="Identifier">out_msg</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">rowOffset</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">0</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span></pre></dt>
 <dd>
 Fetches multiple rows out of the PreparedStatement. How much rows are read is constrainted by the length of the given out_rows sequence. The sequence must be preinitialized with the appropriate instances. The integer returned indicates the number of rows iterated. rowOffset is optional and should not exceed the out_rows container length
 
 </dd>
 <a id="fetchColumnCount,ResultSet"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchColumnCount%2CResultSet"><span class="Identifier">fetchColumnCount</span></a><span class="Other">(</span><span class="Identifier">rs</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchColumnCount</span><span class="Other">(</span><span class="Identifier">rs</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">inline</span><span class="Other">,</span> <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 retrieves the number of columns of the ResultSet
 
 </dd>
 <a id="fetchColumnNames,ResultSet,seq[string]"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#fetchColumnNames%2CResultSet%2Cseq%5Bstring%5D"><span class="Identifier">fetchColumnNames</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">out_colnames</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">fetchColumnNames</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">out_colnames</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 <p>Fetches the column-names of the active prepared statement into the second parameter. The sequence is initialized internally. The columnnames of the result could only gathered if the preparedStatement is active.</p>
@@ -1389,19 +1826,19 @@ retrieves the number of columns of the ResultSet
 
 </dd>
 <a id="cleanupAllocatedResources,DbConn,RCode"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#cleanupAllocatedResources%2CDbConn%2CRCode"><span class="Identifier">cleanupAllocatedResources</span></a><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">resultcode</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">cleanupAllocatedResources</span><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">resultcode</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 cleanup. finalizes all open prepared Statements for the specified connection. 
 
 </dd>
 <a id="exec,DbConn,SqlQuery,RCode"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#exec%2CDbConn%2CSqlQuery%2CRCode"><span class="Identifier">exec</span></a><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">SqlQuery</span><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">exec</span><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">SqlQuery</span><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 Suitable for execution of commands which do not return any results or executed only once. If an error happens the backend returns with an error message. in this case the errStr field of the returncode is set.
 
 </dd>
 <a id="exec,DbConn,SqlQuery,RCode,seq[seq[string]],pointer,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#exec%2CDbConn%2CSqlQuery%2CRCode%2Cseq%5Bseq%5Bstring%5D%5D%2Cpointer%2Cint"><span class="Identifier">exec</span></a><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">SqlQuery</span><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">exec</span><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">SqlQuery</span><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span>
          <span class="Identifier">out_results</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">buffer</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">;</span> <span class="Identifier">buffsize</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
@@ -1414,34 +1851,34 @@ Suitable for execution of commands which do not return any results or executed o
 
 </dd>
 <a id="exec,DbConn,SqlQuery,RCode,seq[seq[string]],int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#exec%2CDbConn%2CSqlQuery%2CRCode%2Cseq%5Bseq%5Bstring%5D%5D%2Cint"><span class="Identifier">exec</span></a><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">SqlQuery</span><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">out_results</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">]</span><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">exec</span><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">SqlQuery</span><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">out_results</span><span class="Other">:</span> <span class="Keyword">var</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">]</span><span class="Other">;</span>
          <span class="Identifier">buffsize</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Other">=</span> <span class="DecNumber">1024</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 convenience proc. allocates shared memory for given buffsize   
 
 </dd>
 <a id="queryOneRow,DbConn,SqlQuery,RCode,int"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#queryOneRow%2CDbConn%2CSqlQuery%2CRCode%2Cint"><span class="Identifier">queryOneRow</span></a><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">SqlQuery</span><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">numCols</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">queryOneRow</span><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">query</span><span class="Other">:</span> <span class="Identifier">SqlQuery</span><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">numCols</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 convenience proc which returns only the first row of the query without the column names. if numCols is smaller than the returned number of columns (ResultSet) the row is truncated
 
 </dd>
 <a id="incarnateDbFromTemplate,DbConn,string,RCode"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#incarnateDbFromTemplate%2CDbConn%2Cstring%2CRCode"><span class="Identifier">incarnateDbFromTemplate</span></a><span class="Other">(</span><span class="Identifier">targetDb</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">absPathWithFilename</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">incarnateDbFromTemplate</span><span class="Other">(</span><span class="Identifier">targetDb</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">absPathWithFilename</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
                             <span class="Identifier">out_rc</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">DbEffect</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 vendor specific helper to incarnate a targetDb from a source database file (template). the source database is opened in readonly mode and copied into the targetDb connection. Databasename 'main' is assumed. keep in mind that the targetDbs connection is not allowed to have any pending transactions open. out_rc is the returncode.
 
 </dd>
 <a id="$,DbTableColumnMetaData"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#%24%2CDbTableColumnMetaData"><span class="Identifier">`$`</span></a><span class="Other">(</span><span class="Identifier">p</span><span class="Other">:</span> <a href="nimdb_common.html#DbTableColumnMetaData"><span class="Identifier">DbTableColumnMetaData</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">`$`</span><span class="Other">(</span><span class="Identifier">p</span><span class="Other">:</span> <a href="nimdb_common.html#DbTableColumnMetaData"><span class="Identifier">DbTableColumnMetaData</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 debugging purpose
 
 </dd>
 <a id="tableColumnMetadata,DbConn,string,string,RCode,string"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#tableColumnMetadata%2CDbConn%2Cstring%2Cstring%2CRCode%2Cstring"><span class="Identifier">tableColumnMetadata</span></a><span class="Other">(</span><span class="Identifier">dbConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">tableName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">columnName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">tableColumnMetadata</span><span class="Other">(</span><span class="Identifier">dbConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">tableName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">columnName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
                         <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">dbName</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;main&quot;</span><span class="Other">)</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#SQLite3ColumnMetaData"><span class="Identifier">SQLite3ColumnMetaData</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
@@ -1449,35 +1886,35 @@ returns metadata for a specified column and table. the dbName could be present o
 
 </dd>
 <a id="columnNamesForTable,DbConn,string,RCode"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#columnNamesForTable%2CDbConn%2Cstring%2CRCode"><span class="Identifier">columnNamesForTable</span></a><span class="Other">(</span><span class="Identifier">dbConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">tableName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">columnNamesForTable</span><span class="Other">(</span><span class="Identifier">dbConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">tableName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 
 
 </dd>
 <a id="allUserTableNames,DbConn,RCode,string"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#allUserTableNames%2CDbConn%2CRCode%2Cstring"><span class="Identifier">allUserTableNames</span></a><span class="Other">(</span><span class="Identifier">dbConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">dbName</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;main&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">allUserTableNames</span><span class="Other">(</span><span class="Identifier">dbConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">dbName</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;main&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 helper to retrieve all db-object table types from specified db
 
 </dd>
 <a id="allUserIndexNames,DbConn,RCode,string"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#allUserIndexNames%2CDbConn%2CRCode%2Cstring"><span class="Identifier">allUserIndexNames</span></a><span class="Other">(</span><span class="Identifier">dbConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">dbName</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;main&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">allUserIndexNames</span><span class="Other">(</span><span class="Identifier">dbConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">dbName</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;main&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 fetches all dbobjects of type : index
 
 </dd>
 <a id="allUserViewNames,DbConn,RCode,string"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#allUserViewNames%2CDbConn%2CRCode%2Cstring"><span class="Identifier">allUserViewNames</span></a><span class="Other">(</span><span class="Identifier">dbConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">dbName</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;main&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">allUserViewNames</span><span class="Other">(</span><span class="Identifier">dbConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">dbName</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;main&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 fetches all dbobjects of type : view fetches all dbobjects of type : index
 
 </dd>
 <a id="metadataForTable,DbConn,string,RCode,string"></a>
-<dt><pre><span class="Keyword">proc</span> <a href="#metadataForTable%2CDbConn%2Cstring%2CRCode%2Cstring"><span class="Identifier">metadataForTable</span></a><span class="Other">(</span><span class="Identifier">dbConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">tableName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span>
+<dt><pre><span class="Keyword">proc</span> <span class="Identifier">metadataForTable</span><span class="Other">(</span><span class="Identifier">dbConn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">tableName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span>
                      <span class="Identifier">dbName</span><span class="Other">:</span> <span class="Identifier">string</span> <span class="Other">=</span> <span class="StringLit">&quot;main&quot;</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="nimdb_sqlite3.html#SQLite3ColumnMetaData"><span class="Identifier">SQLite3ColumnMetaData</span></a><span class="Other">]</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
@@ -1490,17 +1927,17 @@ returns the metadata for specified table
 <h1><a class="toc-backref" href="#15">Iterators</a></h1>
 <dl class="item">
 <a id="allOpenPreparedStatements.i,DbConn"></a>
-<dt><pre><span class="Keyword">iterator</span> <a href="#allOpenPreparedStatements.i%2CDbConn"><span class="Identifier">allOpenPreparedStatements</span></a><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">)</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+<dt><pre><span class="Keyword">iterator</span> <span class="Identifier">allOpenPreparedStatements</span><span class="Other">(</span><span class="Identifier">db</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">)</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 iterates over all open (non-finalized) preparedStatements for the specified connection
 
 </dd>
-<a id="validateSql.i,DbConn,seq[SqlQuery]"></a>
-<dt><pre><span class="Keyword">iterator</span> <a href="#validateSql.i%2CDbConn%2Cseq%5BSqlQuery%5D"><span class="Identifier">validateSql</span></a><span class="Other">(</span><span class="Identifier">dbconn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">queries</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">SqlQuery</span><span class="Other">]</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
-    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
+<a id="validateSql.i,DbConn,openArray[SqlQuery],RCode"></a>
+<dt><pre><span class="Keyword">iterator</span> <span class="Identifier">validateSql</span><span class="Other">(</span><span class="Identifier">dbconn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">queries</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">SqlQuery</span><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+    <span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
-experimental iterator which validates each sql. each query is wrapped into a transaction before execution and a rollback is performed after. each error is yielded. keep in mind that at least one vendor does not support transactional ddl and performs a forced commit if a ddl is executed. 
+experimental iterator which validates each sql. each query is wrapped into a transaction before execution and a rollback is performed after. each error is yielded. the intention is to detect syntax errors. keep in mind that at least one vendor does not support transactional ddl and performs a forced commit if a ddl is executed. resultcode SQLITE_CONSTRAINT: not null constraint  is suppressed
 
 </dd>
 
@@ -1509,88 +1946,89 @@ experimental iterator which validates each sql. each query is wrapped into a tra
 <h1><a class="toc-backref" href="#18">Templates</a></h1>
 <dl class="item">
 <a id="evalHasError.t,RCode"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#evalHasError.t%2CRCode"><span class="Identifier">evalHasError</span></a><span class="Other">(</span><span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">evalHasError</span><span class="Other">(</span><span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
 template which checks for error return codes. for instance SQLITE_BUSY (obj-lock) will be handled as an error
 
 </dd>
 <a id="forceRollback.t,RCode"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#forceRollback.t%2CRCode"><span class="Identifier">forceRollback</span></a><span class="Other">(</span><span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span></pre></dt>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">forceRollback</span><span class="Other">(</span><span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span></pre></dt>
 <dd>
 usable within a transaction to force a non technical rollback without throwing an exception
 
 </dd>
 <a id="hasRows.t,RCode"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#hasRows.t%2CRCode"><span class="Identifier">hasRows</span></a><span class="Other">(</span><span class="Identifier">ec</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">hasRows</span><span class="Other">(</span><span class="Identifier">ec</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
 true if the backend returned SQLITE_ROW
 
 </dd>
 <a id="evalBindError.t,int"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#evalBindError.t%2Cint"><span class="Identifier">evalBindError</span></a><span class="Other">(</span><span class="Identifier">vendorcode</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">evalBindError</span><span class="Other">(</span><span class="Identifier">vendorcode</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
 returns true if a bind error happened
 
 </dd>
 <a id="fetchErrcode.t,DbConn"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#fetchErrcode.t%2CDbConn"><span class="Identifier">fetchErrcode</span></a><span class="Other">(</span><span class="Identifier">dbconn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span></pre></dt>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">fetchErrcode</span><span class="Other">(</span><span class="Identifier">dbconn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span></pre></dt>
 <dd>
 fetches the errorcode according to the vendor spec only needed if the raw-type bind/fetching procs are used
 
 </dd>
 <a id="fetchErrcode.t,PreparedStatement"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#fetchErrcode.t%2CPreparedStatement"><span class="Identifier">fetchErrcode</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span></pre></dt>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">fetchErrcode</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span></pre></dt>
 <dd>
 fetches the errorcode according to the vendors spec only needed if the raw bind/fetching procs are used
 
 </dd>
 <a id="prepareNextRow.t,ResultSet,RCode"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#prepareNextRow.t%2CResultSet%2CRCode"><span class="Identifier">prepareNextRow</span></a><span class="Other">(</span><span class="Identifier">rs</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">r</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span></pre></dt>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">prepareNextRow</span><span class="Other">(</span><span class="Identifier">rs</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">r</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span></pre></dt>
 <dd>
 raw API: invokes step() of the query-interface. the vendorcode is set.
 
 </dd>
 <a id="resetPreparedStatement.t,PreparedStatement,RCode"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#resetPreparedStatement.t%2CPreparedStatement%2CRCode"><span class="Identifier">resetPreparedStatement</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span></pre></dt>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">resetPreparedStatement</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">)</span></pre></dt>
 <dd>
-reset the preparedStatement ready to re-execute. needed to reset the prepared statement for re-execute later on. opposite of 'withPreparedStatement'
+reset the preparedStatement ready to re-execute. needed to reset the prepared statement for re-execute later on.
 
 </dd>
 <a id="withTransaction.t,DbConn,RCode,untyped"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#withTransaction.t%2CDbConn%2CRCode%2Cuntyped"><span class="Identifier">withTransaction</span></a><span class="Other">(</span><span class="Identifier">dbconn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span></pre></dt>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">withTransaction</span><span class="Other">(</span><span class="Identifier">dbconn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span></pre></dt>
 <dd>
 <p>used to encapsulate the operation within a transaction. rollback is performed by a technical fault condition, if an exception is thrown or if the RCode container was tagged with forceRollback()</p>
 <p>this template is not nestable if the vendor does not support it</p>
 
 
 </dd>
-<a id="withPreparedStatement.t,PreparedStatement,RCode,untyped"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#withPreparedStatement.t%2CPreparedStatement%2CRCode%2Cuntyped"><span class="Identifier">withPreparedStatement</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">rcode</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span></pre></dt>
+<a id="withFinalisePreparedStatement.t,PreparedStatement,RCode,untyped"></a>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">withFinalisePreparedStatement</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">rcode</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span>
+                                      <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span></pre></dt>
 <dd>
 finalizes the preparedStatement after leaving the block. it can't be used later on.
 
 </dd>
 <a id="rawBind.t,PreparedStatement,RCode,untyped"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#rawBind.t%2CPreparedStatement%2CRCode%2Cuntyped"><span class="Identifier">rawBind</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">rawBind</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">dirty</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
-template for raw-binding used within a custom loop. null type fetching must be handled manually. suitable for insert/update/upsert statements The variable baseIdx inside template's scope starts with the vendors defined leftmost index
+template for raw-binding used within a custom loop. null type fetching must be handled manually. suitable for insert/update/upsert statements The variable &quot;baseIdx&quot; inside template's scope starts with the vendors defined leftmost index. It needs to be advanced to the next parameter if the template is inside an iteration (see speed_comparison.nim for an example)
 
 </dd>
 <a id="rawFetch.t,ResultSet,RCode,untyped"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#rawFetch.t%2CResultSet%2CRCode%2Cuntyped"><span class="Identifier">rawFetch</span></a><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">dirty</span></span><span class="Other">.}</span></span></pre></dt>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">rawFetch</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#ResultSet"><span class="Identifier">ResultSet</span></a><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma"><span class="Identifier">dirty</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
 template for raw fetching results used within a custom loop. always call 'getResultSet' before using this template. the variable colIdx inside the template's scope starts with the vendors defined leftmost index.
 
 </dd>
 <a id="withRollbackTransaction.t,DbConn,RCode,untyped"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#withRollbackTransaction.t%2CDbConn%2CRCode%2Cuntyped"><span class="Identifier">withRollbackTransaction</span></a><span class="Other">(</span><span class="Identifier">dbconn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span></pre></dt>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">withRollbackTransaction</span><span class="Other">(</span><span class="Identifier">dbconn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span></pre></dt>
 <dd>
 performs always a rollback, regardless if error or not. suitable for testing purposes.
 
 </dd>
 <a id="withNestedTransaction.t,DbConn,RCode,string,untyped"></a>
-<dt><pre><span class="Keyword">template</span> <a href="#withNestedTransaction.t%2CDbConn%2CRCode%2Cstring%2Cuntyped"><span class="Identifier">withNestedTransaction</span></a><span class="Other">(</span><span class="Identifier">dbconn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">transactionName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
+<dt><pre><span class="Keyword">template</span> <span class="Identifier">withNestedTransaction</span><span class="Other">(</span><span class="Identifier">dbconn</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#DbConn"><span class="Identifier">DbConn</span></a><span class="Other">;</span> <span class="Identifier">rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">transactionName</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
                               <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span></pre></dt>
 <dd>
 use this template if you need nestable statement encapsulation. transactionName's should be unique within the transaction-tree. further reading:<ul class="simple"><li><a class="reference external" href="https://www.sqlite.org/lang_transaction.html">https://www.sqlite.org/lang_transaction.html</a></li>
@@ -1609,7 +2047,7 @@ use this template if you need nestable statement encapsulation. transactionName'
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-02-25 13:36:12 UTC</small>
+        <small>Made with Nim. Generated: 2019-07-03 22:09:36 UTC</small>
       </div>
     </div>
   </div>

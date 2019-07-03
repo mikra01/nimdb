@@ -21,8 +21,10 @@
 ## this comes in two flavours: traced and untraced.
 ## The traced version (which should be sufficient for most use cases) copies the blob/varchar
 ## immediately into a seq[byte]/nimstring while reading. The unmanaged version only provides
-## the backend pointer and length; the content must copied immediately into the application domain.
-## writing into db is straightforward; the optional destructor callback is provided for both flavours.
+## the backend pointer and length; the content must copied (before consuming the resultSet's
+## next row ) into the application domain.
+##
+## storing into db is straightforward; the optional destructor callback is provided for both flavours.
 ## if the destructor callback is not used the object/ptr should stay valid till the transaction ends.
 ##  
 ## no implicit type conversion is performed - the caller needs to take care
@@ -160,7 +162,7 @@ template fetchErrcode*( ps : PreparedStatement) : int =
 template prepareNextRow*( rs : ResultSet ,  r : var RCode) =
   ## raw API: invokes step() of the query-interface. the vendorcode is set.
   bind nimdb_sqlite3w.step
-  r.vendorcode = rs.step
+  r.vendorcode = step(rs)
 
 proc getResultSet*( ps : PreparedStatement , 
                     out_rc : var RCode) : ResultSet {.inline.} =
@@ -351,7 +353,8 @@ proc bindFloat64*( ps : PreparedStatement, paramIdx: int,
   result = bind_double(ps, paramIdx.int32, val)
 
 proc bindNull*( ps : PreparedStatement, paramIdx: int) : int {.inline.}  =
-  ## Sets the bindparam at the specified paramIndex to null.
+  ## Sets the bindparam at the specified paramIndex to null 
+  ## (default behaviour by sqlite).
   ## the return value is the sqlite returncode which can be evaluated by 
   ## the evalHasError/evalBindError template
   result = bind_null(ps, paramIdx.int32) 
@@ -408,7 +411,7 @@ proc bindBlob*( ps : PreparedStatement,
                    freeCb : SQLite3UnbindCb = nil ) : int  =
   ## binds a blob to the specified paramIndex. managed version.
   ## unless this callback is executed by the backend the sequence and it's
-  ## contents needs to stay valid.
+  ## contents need to stay valid.
   ## If no callback was specified the binding method is SQLITE_STATIC.
   ## The return value is the sqlite returncode which can be evaluated by 
   ## the evalHasError/evalBindError template
@@ -678,7 +681,7 @@ proc fetchColumnCount*( rs : var ResultSet ) : int {.inline.} =
   ## retrieves the number of columns of the ResultSet
   result = rs.data_count
 
-proc fetchColumnNames*( ps : var ResultSet , 
+proc fetchColumnNames*( ps : ResultSet , 
                         out_colnames : var seq[string] ) =
   ## Fetches the column-names of the active prepared statement 
   ## into the second parameter. 
@@ -807,8 +810,11 @@ type
                        in_memsize_b:int ]
   # needed for handshaking between backend-cb (unknown context) and proc
 
-proc execCallback(context : pointer, numcols : int32, fields, colnames : cstringArray) : int32 {.cdecl.} =
-  # we do not know in which thread-context we are running here. due to that we copy the results into a custom
+proc execCallback(context : pointer, 
+                  numcols : int32, 
+                  fields, colnames : cstringArray) : int32 {.cdecl.} =
+  # we do not know in which thread-context we are running here. 
+  # due to that we copy the results into a custom
   # shared mem block
   result = 0 # return 0 for indicating: ok, next row
   var hsc : ptr CbResult = 
@@ -928,18 +934,18 @@ template withTransaction*( dbconn : DbConn, rc : var RCode, body: untyped) =
   ## this template is not nestable if the vendor does not support it
 
   bind collectMsgAndDoIfErrorElse
-
-  dbconn.exec(sql"BEGIN;",rc)
-  try:
-    body
-  except:
-    dbconn.exec(sql"ROLLBACK;",rc)
-    raise
-  collectMsgAndDoIfErrorElse(rc,dbconn) do:
-    var ec : RCode 
-    dbconn.exec(sql"ROLLBACK;",ec) # hacky; prevent overwrite previous err
-  do:     # else
-    dbconn.exec(sql"COMMIT;",rc)
+  block:
+    dbconn.exec(sql"BEGIN;",rc)
+    try:
+      body
+    except:
+      dbconn.exec(sql"ROLLBACK;",rc)
+      raise
+    collectMsgAndDoIfErrorElse(rc,dbconn) do:
+      var ec : RCode 
+      dbconn.exec(sql"ROLLBACK;",ec) # hacky; prevent overwrite previous err
+    do:     # else
+      dbconn.exec(sql"COMMIT;",rc)
 
 
 template withFinalisePreparedStatement*(ps : PreparedStatement, 
@@ -961,20 +967,23 @@ template rawBind*( ps : PreparedStatement,
   ## template for raw-binding used within a custom loop.
   ## null type fetching must be handled manually. suitable for insert/update/upsert
   ## statements
-  ## The variable baseIdx inside template's scope 
-  ## starts with the vendors defined leftmost index
+  ## The variable "baseIdx" inside template's scope 
+  ## starts with the vendors defined leftmost index. It needs to be advanced to the next
+  ## parameter if the template is inside an iteration 
+  ## (see speed_comparison.nim for an example)
   bind collectVendorRCode
   bind collectMsgAndDoIfError
   # bind PreparedStatement
   bind step
   bind reset
-  var baseIdx : int32 = BindIdxStart
-  body
-  collectVendorRCode(out_rc):
-    step(ps)     # execute query
-  out_rc.collectMsgAndDoIfError(ps):
-   discard
-  discard ps.reset    # reset state machine
+  block: # needed for template nesting
+    var baseIdx : int32 = BindIdxStart
+    body
+    collectVendorRCode(out_rc):
+      step(ps)     # execute query
+    out_rc.collectMsgAndDoIfError(ps):
+     discard
+    discard ps.reset    # reset state machine
 
 template rawFetch*( ps : ResultSet , out_rc : var RCode, body : untyped )  {.dirty.} =
   ## template for raw fetching results used within a custom loop.
@@ -985,14 +994,15 @@ template rawFetch*( ps : ResultSet , out_rc : var RCode, body : untyped )  {.dir
   bind collectMsgAndDoIfError
   bind SQLITE_OK
   bind step
-  var colIdx : int32 = ResultIdxStart
-  collectVendorRCode(out_rc):
-    SQLITE_OK
-  body
-  collectVendorRCode(out_rc):
-    step(ps) #  advance to the next row if present
-  out_rc.collectMsgAndDoIfError(ps):
-    discard
+  block: # needed for template nesting
+    var colIdx : int32 = ResultIdxStart
+    collectVendorRCode(out_rc):
+      SQLITE_OK
+    body
+    collectVendorRCode(out_rc):
+      step(ps) #  advance to the next row if present
+    out_rc.collectMsgAndDoIfError(ps):
+      discard
 
 template withRollbackTransaction*(dbconn : DbConn, rc : var RCode, body : untyped) =
   ## performs always a rollback, regardless if error or not. suitable for testing purposes.
@@ -1013,33 +1023,35 @@ template withNestedTransaction*( dbconn : DbConn, rc : var RCode,
   ## further reading: 
   ## * https://www.sqlite.org/lang_transaction.html
   ## * https://www.sqlite.org/atomiccommit.html
-  conn.exec sql"SAVEPOINT " & transactionName,rc
-  try:
-    body
-  except:
-    dc.exec sql"ROLLBACK TO " & transactionName,rc
-    raise
-  if evalHasError(rc):
-    var ec : RCode 
-    dc.exec(sql"ROLLBACK TO " & transactionName,ec) # hacky. prevent overwrite previous err  
-  else:
-    dc.exec sql"RELEASE " & transactionName,rc
+  block:
+    conn.exec sql"SAVEPOINT " & transactionName,rc
+    try:
+      body
+    except:
+      dc.exec sql"ROLLBACK TO " & transactionName,rc
+      raise
+    if evalHasError(rc):
+      var ec : RCode 
+      dc.exec(sql"ROLLBACK TO " & transactionName,ec) # hacky. prevent overwrite previous err  
+    else:
+      dc.exec sql"RELEASE " & transactionName,rc
 
-iterator validateSql*( dbconn : DbConn, queries: seq[SqlQuery] ) : string =
+iterator validateSql*( dbconn : DbConn, queries: openArray[SqlQuery], rc: var RCode ) : string =
   ## experimental iterator which validates each sql. each query is wrapped into
   ## a transaction before execution and a rollback is performed after.
-  ## each error is yielded.
+  ## each error is yielded. the intention is to detect syntax errors.
   ## keep in mind that at least one vendor does not support 
   ## transactional ddl and performs a 
   ## forced commit if a ddl is executed. 
+  ## resultcode SQLITE_CONSTRAINT: not null constraint  is suppressed
   for i in countup(0,queries.len-1):
-    var rc : RCode
     let sqlq = queries[i]
     if sqlq is not type(nil):
       withRollbackTransaction(dbconn,rc):
         dbconn.exec(sqlq,rc)
-    rc.collectMsgAndDoIfError(dbconn):
-          yield  " [" & cast[string](queries[i]) & "] ==> " & $rc 
+        rc.collectMsgAndDoIfError(dbconn):
+          if rc.vendorcode != SQLITE_CONSTRAINT: # was not parsed
+            yield  " [" & cast[string](queries[i]) & "] ==> " & $rc 
 
 proc incarnateDbFromTemplate*(targetDb: DbConn, absPathWithFilename : string, out_rc : RCode ) =
   ## vendor specific helper to incarnate a targetDb from a source database file (template).
@@ -1194,6 +1206,7 @@ proc metadataForTable*(dbConn : DbConn ,
 #           shared file
 #           locking examples (possible deadlock resolving?)
 # TODO:
+# retrieve identity back from insert stmt if caller needs that (probe for parallel safety)
 # sqlite_busy_handler/ unlock notify api https://www.sqlite.org/unlock_notify.html
 # incremental blob api
 # WAL (concurrency)
@@ -1203,6 +1216,7 @@ proc metadataForTable*(dbConn : DbConn ,
 # configure db-connections with sqlite3_db_config
 # sqlite_trace_v2 interface
 # utilize system tables: sqlite_master, sqlite_tmp_master, sqlite_sequence
+# custom window functions https://www.sqlite.org/c3ref/create_function.html
 # sqlitel.org/src/doc/trunc/ext/user_auth
 # custom udf-code into sqlite3 : https://www.sqlite.org/loadext.html
 # database query facility / preparedstatements / UDF
