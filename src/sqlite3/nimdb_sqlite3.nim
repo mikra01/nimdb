@@ -969,7 +969,7 @@ template rawBind*( ps : PreparedStatement,
   ## statements
   ## The variable "baseIdx" inside template's scope 
   ## starts with the vendors defined leftmost index. It needs to be advanced to the next
-  ## parameter if the template is inside an iteration 
+  ## parameter if an iteration is inside the template´s scope (multiple parameters present) 
   ## (see speed_comparison.nim for an example)
   bind collectVendorRCode
   bind collectMsgAndDoIfError

@@ -2012,7 +2012,7 @@ finalizes the preparedStatement after leaving the block. it can't be used later 
 <dt><pre><span class="Keyword">template</span> <span class="Identifier">rawBind</span><span class="Other">(</span><span class="Identifier">ps</span><span class="Other">:</span> <a href="nimdb_sqlite3.html#PreparedStatement"><span class="Identifier">PreparedStatement</span></a><span class="Other">;</span> <span class="Identifier">out_rc</span><span class="Other">:</span> <span class="Keyword">var</span> <a href="nimdb_sqlite3.html#RCode"><span class="Identifier">RCode</span></a><span class="Other">;</span> <span class="Identifier">body</span><span class="Other">:</span> <span class="Identifier">untyped</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">untyped</span> <span><span class="Other">{</span><span class="Other pragmadots">...</span><span class="Other">}</span></span><span class="pragmawrap"><span class="Other">{.</span><span class="pragma">
     <span class="Identifier">dirty</span></span><span class="Other">.}</span></span></pre></dt>
 <dd>
-template for raw-binding used within a custom loop. null type fetching must be handled manually. suitable for insert/update/upsert statements The variable &quot;baseIdx&quot; inside template's scope starts with the vendors defined leftmost index. It needs to be advanced to the next parameter if the template is inside an iteration (see speed_comparison.nim for an example)
+template for raw-binding used within a custom loop. null type fetching must be handled manually. suitable for insert/update/upsert statements The variable &quot;baseIdx&quot; inside template's scope starts with the vendors defined leftmost index. It needs to be advanced to the next parameter if an iteration is inside the template´s scope (multiple parameters present) (see speed_comparison.nim for an example)
 
 </dd>
 <a id="rawFetch.t,ResultSet,RCode,untyped"></a>
@@ -2047,7 +2047,7 @@ use this template if you need nestable statement encapsulation. transactionName'
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small>Made with Nim. Generated: 2019-07-03 22:09:36 UTC</small>
+        <small>Made with Nim. Generated: 2019-07-03 22:49:45 UTC</small>
       </div>
     </div>
   </div>
