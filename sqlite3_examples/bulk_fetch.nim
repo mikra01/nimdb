@@ -14,7 +14,7 @@ proc incarnateTstObjCb( ps: PreparedStatement, firstidx : int,
                     val : ps.fetchFloat64Opt(firstidx+2) ) 
 
 newPreparedStatement(db,sql""" select id,testcol1, testcol2 
-                               from main.testtable order by id desc ; """, ps,returncode) 
+                               from main.testtable order by testcol2 desc ; """, ps,returncode) 
 newSeq(container,3)
 
 var rowcount : int = 0
@@ -24,7 +24,7 @@ withFinalisePreparedStatement(ps,returncode):
   # if not in WAL mode we have a read-lock here
   if hasRows(returncode):
     rowcount = rowcount + fetchRows(rs,container, incarnateTstObjCb,returncode) 
-  assert( unsafeGet(container[0].id) == 6 ,"id number 6 expected")
+  assert( unsafeGet(container[0].val) == 6 ," number 6 expectd ")
   echo container
   # read next 3 rows
   if hasRows(returncode):
