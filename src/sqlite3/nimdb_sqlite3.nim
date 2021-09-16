@@ -275,7 +275,7 @@ proc dumpDbTo*(srcConn : DbConn, dstConn : DbConn,
   ## and the page_size is equal to the src db (see pragma page_size)
   ##
   ## for further reading please look at https://www.sqlite.org/backup.html
-  var pBackup : PSQLite3Backup
+  var pBackup : PDbSqlite3Backup
 
   pBackup = dstConn.sqlite3_backup_init(dstDbName,srcConn,srcDbName)
   
@@ -467,7 +467,7 @@ type
   ## callback which is used by bulkBind. It´s called before step() is executed
 
 const 
-  BindIdxStart* = 1.int
+  BindIdxStart* = 1.int32
     ## defines the vendors leftmost parameter of the parameterized sql-query
   
 proc bulkBind*[T](ps : PreparedStatement, 
@@ -652,7 +652,7 @@ type
   ## callback for populating a container on a resultSet row base
 
 const 
-  ResultIdxStart = 0.int
+  ResultIdxStart = 0.int32
   ## the vendors leftmost column index
 
 proc fetchRows*[T](ps : ResultSet, out_rows : var openArray[T], fetchCols : PopulateCb[T],
